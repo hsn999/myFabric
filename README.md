@@ -1,8 +1,6 @@
 
 2018-4-19
 
-Hyperledge fabricÏîÄ¿ÊÇIBM¿ªÔ´µÄÇø¿éÁ´ÏîÄ¿¡£GithubµØÖ·£ºhttps://github.com/hyperledger/fabric
+Hyperledge fabricé¡¹ç›®æ˜¯IBMå¼€æºçš„åŒºå—é“¾é¡¹ç›®ã€‚Githubåœ°å€ï¼šhttps://github.com/hyperledger/fabric
 
-Hyperledge fabricµÄ¿ª·¢»·¾³ÊÇÒ»¸öÔËĞĞÔÚvagrant£¨Ò»²ãvirtualboxÉÏµÄĞéÄâ»úÆ¤£©ÀïµÄUbuntuÓ³Ïñ£¬²¢ÔÚĞéÄâ»úÄÚ²¿ÔËĞĞÁËÈô¸ÉDockerÈİÆ÷¡£´Ó¸ÅÄîÉÏËµ£¬¾ÍÊÇÔÚÒ»¸öÖ÷»úÀïÆô¶¯ÁËÒ»¸öĞéÄâ»ú£¬È»ºóÔÚĞéÄâ»úÉÏÆô¶¯DockerÈİÆ÷¡£
-
-±¾ÏîÄ¿ÕûºÏÁË Hyperledge fabric¼° IPFS ´´½¨ÁËÒ»¸ö¼òµ¥µÄ´æÖ¤¼°»ı·Ö°¸Àı 
+æœ¬é¡¹ç›®æ•´åˆäº† Hyperledge fabricåŠ IPFS åˆ›å»ºäº†ä¸€ä¸ªç®€å•çš„å­˜è¯åŠç§¯åˆ†æ¡ˆä¾‹ 
