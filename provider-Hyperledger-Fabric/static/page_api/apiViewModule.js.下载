@@ -1,0 +1,15 @@
+$(function() {
+	$(window).off('scroll').on('scroll', function() {
+		if($(document).scrollTop() > 48160) {
+			$(".menu").removeClass("menu-top");
+			$(".menu").addClass("menu-bottom");
+		} else {
+			$(".menu").removeClass("menu-bottom");
+			if($(document).scrollTop() > 140) {
+				$(".menu").addClass("menu-top");
+			} else {
+				$(".menu").removeClass("menu-top");
+			}
+		}
+	});
+});

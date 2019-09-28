@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="./page_api/main.css">
+    <link rel="stylesheet" href="./page_api/common.css">
+    <link rel="stylesheet" href="./page_api/iconfont.css">
+    <link href="common/images/favicon.ico" rel="icon" type="image/x-icon">
+    <link rel="stylesheet" href="./page_api/animate.css">
+    <script type="text/javascript" src="js/jquery-3.2.1.js"></script>
+    <script type="text/javascript" src="js/slidetable.js"></script>
+    <script type="text/javascript" src="js/doT.js"></script>
+    <script type="text/javascript" src="plugins/layer/layer.js"></script>
+    <link rel="stylesheet" href="page/savetable.css">
+    <link rel="stylesheet" href="page/chain.css">
+
+    <link rel="stylesheet" href="./page_api/headerFooter.css">
+    <link rel="stylesheet" href="./page_api/bumeng-nav.css">
+
+</head>
+
+<body>
+<div align="center">
+    <h1>DINPAY BLOCKCHAIN PLATFORM</h1>
+</div>
+
+<div class="bm-header-wrap">
+    <div class="bm-header clear-fix">
+        <a href="#" class="bm-logo-wrap fl">
+            <img src="./page_api/nav-logo.png" class="bm-logo">
+        </a>
+        <div class="login-group fr clear-fix">
+            <a href="http://192.168.37.13:8088" target="_blank" class="login-item login-btn fl">登录</a>
+            <!--<a href="user/register" class="login-item register fl">注册</a>-->
+        </div>
+        <div class="logined-group fr" style="display: none;">
+            <a href="#" class="user-center nav-item-list">用户中心</a>
+            <ul class="sub-menu" style="display: none; opacity: 0; top: 60px;">
+                <li class="baseInfo-NavOut">退出</li>
+            </ul>
+        </div>
+        <div class="nav-separation fr"></div>
+        <ul class="nav-list fr clear-fix">
+            <li class="nav-group">
+                <a href="index.html" class="nav-item">首页</a>
+            </li>
+            <li class="nav-group ">
+                <a class="nav-item nav-item-list">场景案例</a>
+                <ul class="sub-menu" style="display: none; opacity: 0; top: 60px;">
+                    <li><a href="app-jifen.html">商业积分</a></li>
+                    <li><a href="app-huzhu.html">网络互助</a></li>
+                </ul>
+            </li>
+            <li class="nav-group ">
+                <a class="nav-item nav-item-list">开发文档</a>
+                <ul class="sub-menu" style="display: none; opacity: 0; top: 60px;">
+
+                    <li><a href="api.html">API文档</a></li>
+                    <li><a href="sdk.html">SDK文档</a></li>
+
+                </ul>
+            </li>
+            <li class="nav-group ">
+                <a href="http://192.168.37.125:8080" target="_blank" class="nav-item">区块浏览</a>
+            </li>
+            <li class="nav-group">
+                <a href="websocket.html" class="nav-item">公示</a>
+            </li>
+            <li class="nav-group">
+                <a href="new.html" class="nav-item">新增存证</a>
+            </li>
+            <li class="nav-group">
+                <a href="display.html" class="nav-item">资产展示</a>
+            </li>
+
+            <li class="nav-line" style="width: 0px; left: 0px;"></li>
+        </ul>
+    </div>
+</div>
+
+
+<div class="savetable-div" style="margin-top: 100px;">
+    <div class="list_hd">
+        <ul>
+            <li>
+                <span class="col-1">交易HASH</span>
+                <span class="col-2">智能合约</span>
+                <span class="col-3">提交用户</span>
+                <span class="col-4">入链时间</span>
+                <span class="col-5">所属区块</span>
+            </li>
+        </ul>
+    </div>
+    <div class="list_lh list_lh_fixed maquee" style="cursor: pointer;">
+        <ul class="list_ul" style="margin-top: 0px;">
+        </ul>
+    </div>
+</div>
+
+<div id="insertAS-div" class="free-order text-center" style="display: none;">
+    <script type="text/template" id="chainInfo">
+        <p class="text-left">查看区块详情</p>
+        <div class="free-order-form text-left"
+             style="height: 350px;overflow-y: scroll;width: 92%;margin: 0;padding: 20px;word-wrap:break-word; overflow-x: hidden">
+
+            blockNumber:{{=it.blockNumber}}<br/>
+            channelId:{{=it.channelId}}<br/>
+            channelName:{{=it.channelName}}<br/>
+            dataHash:{{=it.dataHash}}<br/>
+            previousHash:{{=it.previousHash}}<br/>
+            envelopCount:{{=it.envelopCount}}<br/>
+
+            {{~it.envelops:obj:index}}
+            chaincode:{{=obj.chaincode}}<br/>
+            chaincodeName:{{=obj.chaincodeName}}<br/>
+            isValid:{{=obj.isValid}}<br/>
+            transactionActionInfoCount:{{=obj.transactionActionInfoCount}}<br/>
+
+            transactionID:{{=obj.transactionId}}<br/>
+            timestamp:{{=obj.timestamp}}<br/>
+
+            {{~obj.transactionActions:a:index1}}
+            {{~a.sets:a1:index2}}
+            {{~a1.reads:a2:index3}}
+            version:{{=a2.version}}<br/>
+            key:{{=a2.key}}<br/>
+            {{~}}
+            {{~}}
+            proposalStatus:{{=a.proposalStatus}}<br/>
+            argCount:{{=a.argCount}}<br/>
+
+            {{~a.endorsers:a3:index4}}
+            signature{{=index4+1}}:{{=a3.signature}}<br/>
+            {{~}}
+
+            {{~a.arg:a4:index5}}
+            {{=a4}}<br/>
+            {{~}}
+
+            count:{{=a.count}}<br/>
+            status:{{=a.status}}<br/>
+            {{~}}
+            {{~}}
+
+
+            channelId:{{=it.channelId}}<br/>
+        </div>
+        <div class="footer"
+             style="width: 300px;display: block;text-align: center;position: absolute;bottom: 30px;left: 200px;">
+            <button class="btn btn-primary btn-md btn-block" type="button" onclick="layer.closeAll();">关闭</button>
+        </div>
+    </script>
+</div>
+</body>
+
+<script type="text/javascript">
+    var websocket = null;
+
+    //�жϵ�ǰ������Ƿ�֧��WebSocket
+    if ('WebSocket' in window) {
+        websocket = new WebSocket("ws://192.168.37.13:8080/websocket");
+    }
+    else {
+        alert('Not support websocket')
+    }
+
+    //���ӷ�������Ļص�����
+    websocket.onerror = function () {
+        setMessageInnerHTML("error");
+    };
+
+    //���ӳɹ������Ļص�����
+    websocket.onopen = function (event) {
+        setMessageInnerHTML("connect to server .....");
+    }
+
+    //���յ���Ϣ�Ļص�����
+    websocket.onmessage = function (event) {
+        setMessageInnerHTML(event.data);
+    }
+
+    //
+    function setMessageInnerHTML(msg) {
+        if (msg.startsWith('start')) {
+            msg = msg.substring(5);
+            var ulElement = $('.maquee').find("ul");
+
+            var retObj = $.parseJSON(msg);
+            var li =  '<li>' +
+                '<span class="col-1" title="'+retObj.txid+'">'+retObj.txid+'</span>' +
+                '<span class="col-2">'+retObj.chaincode+'</span>' +
+                '<span class="col-3">'+retObj.proposalUser+'</span>' +
+                '<span class="col-4">'+retObj.ctime+'</span>' +
+                '<span class="col-5"><a class="color-primary insert-btn" transactionid="'+retObj.txid+'" name="query">查看</a></span>' +
+                '</li>';
+
+            //remove duplicate
+            var tmp = $('.maquee:contains('+retObj.txid+')');
+            if(tmp && tmp.length == 0){
+                ulElement.append(li);
+            }
+
+            if(ulElement.find("li").length > 18 ){
+                ulElement.find("li:first").remove();
+            }
+
+            viewEventHandler();//view event
+
+
+            ulElement.find("li:even").css("background", "rgba(188,218,243,0.6)");
+            ulElement.find("li:odd").css("background", "white");
+        } else if (msg.startsWith('end')) {
+            msg = msg.substring(4);
+            $("#" + msg).remove();
+
+        } else {
+            // document.getElementById('message').innerHTML += msg + '<br/>';
+        }
+    }
+
+
+    var dotTemp = document.querySelector("#chainInfo").text;
+    var tempSign = doT.template(dotTemp);
+
+    function viewEventHandler() {
+
+        $("a[name='query']").unbind("click");
+        $("a[name='query']").click(function () {
+            var transactionId = $(this).attr("transactionId");
+            // noinspection EqualityComparisonWithCoercionJS
+            if (transactionId == null || typeof transactionId == "undefined") {
+                layer.msg("交易ID不能为空");
+                return false;
+            }
+            $.ajax({
+                url: "/getx",
+                data: {'transactionId': transactionId},
+                dataType: "json",
+                type: "post",
+                async: false,
+                success: function (data) {
+                    if (data.success) {
+                        $("#insertAS-div").html("").html(tempSign(data.data));
+                        layer.open({
+                            type: 1,
+                            area: ["740px", "490px"],
+                            title: null,
+                            content: $("#insertAS-div"),
+                            shadeClose: false,
+                            success: function () {
+                            }
+                        });
+                    } else {
+                        layer.msg(data.msg);
+                    }
+                },
+                error: function (e) {
+                    console.log(e)
+                    layer.msg("服务器繁忙，稍后再试。");
+                }
+            })
+        })
+
+    }
+
+
+    //���ӹرյĻص�����
+    websocket.onclose = function () {
+        setMessageInnerHTML("close");
+    }
+
+    //�������ڹر��¼��������ڹر�ʱ������ȥ�ر�websocket���ӣ���ֹ���ӻ�û�Ͽ��͹رմ��ڣ�server�˻����쳣��
+    window.onbeforeunload = function () {
+        websocket.close();
+    }
+
+
+    //�ر�����
+    function closeWebSocket() {
+        websocket.close();
+    }
+
+    //������Ϣ
+    function send() {
+        var message = document.getElementById('text').value;
+        websocket.send(message);
+    }
+</script>
+</html>

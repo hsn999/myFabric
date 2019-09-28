@@ -1,0 +1,1568 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="text/html;" http-equiv="Content-Type">
+	<title>数字资产平台</title>
+	<meta name="keywords" content="数字资产,区块链,区块链应用,区块链技术,区块链开发,区块链开发者平台,区块链知乎,区块链金融,区块链社区,区块链论坛,区块链服务,区块链赚钱">
+	<meta name="description" content="区块链数字资产网络基于区块链技术，针对商业积分、游戏交易、数字版权、慈善公益、互助保险、身份认证、智能合约、电子合同、黄金能源等应用场景进行应用层接口封装，帮助企业/个人开发者快速的将数字资产发行到数字资产网络。">
+	<meta name="format-detection" content="telephone=no">
+	<link href="common/images/favicon.ico" rel="icon" type="image/x-icon">
+	<link rel="stylesheet" href="./page_api/common.css">
+	<link rel="stylesheet" href="./page_api/iconfont.css">
+	<link rel="stylesheet" href="./page_api/animate.css">
+	<link rel="stylesheet" href="./page_api/main.css">
+	<link rel="stylesheet" href="./page_api/headerFooter.css">
+	<link rel="stylesheet" href="./page_api/bumeng-nav.css">
+	
+	<!--[if lt lte 9]><link rel="stylesheet" type="text/css" href="common/css/ie8-ie9.css"><![endif]-->
+</head>
+<body>
+	<div style="height:60px;"></div>
+	<div class="bm-header-wrap">
+		<div class="bm-header clear-fix">
+			<a href="#" class="bm-logo-wrap fl">
+				<img src="./page_api/nav-logo.png" class="bm-logo">
+			</a>
+			
+			
+				<div class="login-group fr clear-fix">
+					<a href="user/login" class="login-item login-btn fl">登录</a>
+					<a href="user/register" class="login-item register fl">注册</a>
+				</div>
+			
+			
+			
+			
+				<div class="logined-group fr" style="display: none;">
+					<a href="#" class="user-center nav-item-list">用户中心</a>
+					<ul class="sub-menu" style="display: none; opacity: 0; top: 60px;">
+						<li class="baseInfo-NavOut">退出</li>
+					</ul>
+				</div>
+			
+			<div class="nav-separation fr"></div>
+			<ul class="nav-list fr clear-fix">
+				<li class="nav-group">
+					<a href="index.html" class="nav-item">首页</a>
+				</li>
+				<li class="nav-group ">
+					<a class="nav-item nav-item-list">场景案例</a>
+					<ul class="sub-menu" style="display: none; opacity: 0; top: 60px;">
+						<li><a href="app-jifen.html">商业积分</a></li>
+						<li><a href="app-huzhu.html">网络互助</a></li>
+					</ul>
+				</li>
+				<li class="nav-group">
+					<a class="nav-item nav-item-list">开发文档</a>
+					<ul class="sub-menu" style="display: none; opacity: 0; top: 60px;">
+		
+						<li><a href="api.html">API文档</a></li>
+						<li><a href="sdk.html">SDK文档</a></li>
+
+					</ul>
+				</li>
+				<li class="nav-group">
+					<a href="websocket.html" class="nav-item">公示</a>
+				</li>
+				<li class="nav-group">
+						<a href="new.html" class="nav-item">新增存证</a>
+					</li>
+				<li class="nav-group">
+					<a href="display.html" class="nav-item">资产展示</a>
+				</li>
+				
+				<li class="nav-line" style="width: 0px; left: 0px;"></li>
+			</ul>
+		</div>
+	</div>
+
+
+
+	<div class="sub-nav broder-gray">
+		<div class="wrap">
+			<ul class="group">
+				<li class="item active"><a href="api.html">API文档</a></li>
+				<li class="item"><a href="sdk.html">SDK文档</a></li>
+				<div class="sub-nav-line" style="width: 0px; left: 122px;"></div>
+			</ul>
+		</div>
+	</div>
+
+	<div class="doc J-doc">
+
+		<dl class="menu uptoTop">
+			<!-- <h2 class="title">API</h2> -->
+			<dt class=""><span class="marker" data-marker="getAccessToken">获取access_token</span></dt>
+			<dt><span class="marker" data-marker="regBubiAccount">注册区块链账户</span></dt>
+			<dt><span class="marker" data-marker="modifyBubiAccount">重置区块链账户</span></dt>
+			<dt class="current"><span class="marker" data-marker="issueAssetBySyn">同步方式_发行资产</span></dt>
+			<dt><span class="marker" data-marker="issueAssetByASyn">异步方式_发行资产</span></dt>
+			<dt><span class="marker" data-marker="getAssetInfo">获取资产详情</span></dt>
+			<dt><span class="marker" data-marker="addAssetInfoBySyn">同步方式_增发资产</span></dt>
+			<dt><span class="marker" data-marker="addAssetInfoByASyn">异步方式_增发资产</span></dt>
+			<dt><span class="marker" data-marker="transformAssetBySyn">同步方式_转移资产</span></dt>
+			<dt><span class="marker" data-marker="transformAssetByASyn">异步方式_转移资产</span></dt>
+			<dt><span class="marker" data-marker="getAccountInfo">获取账户信息</span></dt>
+			<dt><span class="marker" data-marker="getTransactionInfoByAddr">获取TX信息</span></dt>
+			<dt><span class="marker" data-marker="getTransactionInfoByTradeNo">通过TX请求号（trade_no）查询TX信息</span></dt>
+			<dt><span class="marker" data-marker="getTransactionInfoByHash">通过TX hash获取TX信息</span></dt>
+			<dt><span class="marker" data-marker="notice">布萌通知接口</span></dt>
+			<dt><span class="marker" data-marker="selectAccountRegStatus">查询账户注册状态</span></dt>
+			<dt><span class="marker" data-marker="selectAssetIssueStatus">查询资产发行状态</span></dt>
+			<dt><span class="marker" data-marker="selectAssetTransformStatus">查询资产转移状态</span></dt>
+			<dt><span class="marker" data-marker="assetType">资产类型规范</span></dt>
+			<dt><span class="marker" data-marker="assetUnitType">资产单位规范</span></dt>
+			<dt><span class="marker" data-marker="errorCode">错误码</span></dt>
+			<dt><span class="marker" data-marker="signAlgorithm">签名算法</span></dt>
+			<dt><span class="marker" data-marker="operationSample">操作示例</span></dt>
+		</dl>
+
+		<div data-marker="getAccessToken" class="con">
+			<h1>获取access_token</h1>
+			<p class="intro">access_token是开发者平台的全局唯一票据号，开发者调用接口时都需要使用access_token。开发者需要将其妥善保存，access_token目前有效期是2个小时。</p>
+			<section id="getAccessToken1_1" class="">
+				<h2 class="explain">接口请求说明</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+					<p class="lh-20">http请求方式：post</p>
+					<p class="lh-20">https://testapi.bumeng.cn/oauth2/token?client_id=appId&amp;client_secret=appKey&amp;grant_type=client_credentials</p>
+				</div>
+				<p style="color:#C55911;">注：请求是需要在header里Content-Type 需要设置application/x-www-form-urlencoded</p>
+			</section>
+			<section id="getAccessToken1_2" class="">
+				<h2>参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>client_id</td><td>第三方用户唯一凭证,即appId</td></tr>
+						<tr><td>client_secret</td><td>第三方用户唯一凭证秘钥，即appkey</td></tr>
+						<tr><td>grant_type</td><td>固定填写client_credentials</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+
+			<section id="getAccessToken1_3" class="">
+				<h2>服务器响应</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+<pre style="background: #dcdcdc;">{
+	"access_token":"0d375f84e588559602ff2fac016fe505",
+	"expires_in":7200
+}
+</pre><br>
+					<div>
+						<table class="table table-bordered">
+							<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+							<tr><td>access_token</td><td>获取到的票据号</td></tr>
+							<tr><td>expires_in</td><td>票据的有效期，单位：秒</td></tr>
+						</tbody></table>
+					</div>
+				</div>
+			</section>
+		</div>
+
+		<div data-marker="regBubiAccount" class="con">
+			<h1>注册区块链账户</h1>
+
+			<section id="regBubiAccount2_1" class="">
+				<p class="intro">开发者可以通过该接口注册区块链账户，注册后该账户处于未激活状态，只有当该账户发行资产或收到其他账户转移给他的资产后，才会被激活。</p>
+			</section>
+
+			<section id="regBubiAccount2_2" class="">
+				<h2 class="explain">接口请求说明</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+					<p class="lh-20">http请求方式：post</p>
+					<p class="lh-20">https://testapi.bumeng.cn/account/v1/register?access_token=ACCESS_TOKEN</p>
+					<p class="lh-20">post数据格式：json</p>
+					<p class="lh-20">post数据示例：</p><p>
+</p><pre style="background: #dcdcdc;">{
+	"user_name":"nan_jiang36",
+	"password":"qaz123",
+	"trade_no":"1000009820141203515766",
+	"metadata":"xxxxxxxx"
+}
+</pre>
+				</div>
+			</section>
+
+			<section id="regBubiAccount2_3" class="">
+				<h2>参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>access_token</td><td>调用接口票据号</td></tr>
+						<tr><td>user_name</td><td>账户名<br><span style="color:#C55911;">规则：长度不能长于25个字符</span></td></tr>
+						<tr><td>password</td><td>账户密码<br><span style="color:#C55911;">规则：长度不能长于30个字符</span></td></tr>
+						<tr><td>trade_no</td><td>接口调用请求号,在开发者系统里生成<br><span style="color:#C55911;">规则：仅包含字母数字，长度不能长于55个字符</span></td></tr>
+						<tr><td>metadata</td><td>自定义字段</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+
+			<section id="regBubiAccount2_4" class="">
+				<h2>服务器响应</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+<pre style="background: #dcdcdc;">成功：
+{
+	"err_code":"0",
+	"msg":"成功",
+	"data":
+	{
+		"bubi_address":"bubiV8i7c3fM7MPFfjZsP4h1zGLUEix4gXUnX8Ft"
+	}
+}
+失败：
+{
+	"err_code":"20000",
+	"msg":"AccessToken 已过期"
+}
+</pre>
+				</div>
+			</section>
+		</div>
+
+		<div data-marker="modifyBubiAccount" class="con">
+			<h1>重置区块链账户</h1>
+			<p class="intro">调用该接口开发者可以重置自己账户下创建的区块链账户密码，新密码将直接更换旧密码</p>
+
+			<section id="modifyBubiAccount3_1" class="">
+				<h2 class="explain">接口请求说明</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+					<p class="lh-20">http请求方式：post</p>
+					<p class="lh-20">https://testapi.bumeng.cn/account/v1/alterPwd?access_token=ACCESS_TOKEN</p>
+					<p class="lh-20">post数据格式：json</p>
+					<p class="lh-20">post数据示例：
+</p><pre style="background: #dcdcdc;">{
+	"user_name":"nan_jiang36",
+	"new_password":"qaz123",
+	"trade_no":"1000009820141203515766"
+}
+</pre>
+					<p></p>
+				</div>
+			</section>
+
+			<section id="modifyBubiAccount3_2" class="">
+				<h2>参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>access_token</td><td>调用接口票据号</td></tr>
+						<tr><td>user_name</td><td>账户名<br><span style="color:#C55911;">规则：长度不能长于25个字符</span></td></tr>
+						<tr><td>new_password</td><td>账户新密码<br><span style="color:#C55911;">规则：长度不能长于30个字符</span></td></tr>
+						<tr><td>trade_no</td><td>接口调用请求号,在开发者系统里生成<br><span style="color:#C55911;">规则：仅包含字母数字，长度不能长于55个字符</span></td></tr>
+					</tbody></table>
+				</div>
+			</section>
+			<section id="modifyBubiAccount3_3" class="">
+				<h2>服务器响应</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+<pre style="background: #dcdcdc;">成功：
+{
+	"err_code":"0",
+	"msg":"成功",
+	"data":"bubiV8i7c3fM7MPFfjZsP4h1zGLUEix4gXUnX8Ft"
+}
+失败：
+{
+	"err_code":"20000",
+	"msg":"AccessToken 已过期"
+}
+</pre>
+				</div>
+			</section>
+		</div>
+
+		<div data-marker="issueAssetBySyn" class="con">
+			<h1>同步方式_发行资产</h1>
+			<p class="intro">开发者可以通过该接口自行发行资产。</p>
+			<section id="issueAssetBySyn4_1" class="">
+				<h2 class="explain">接口请求说明</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+					<p class="lh-20">http请求方式：post</p>
+					<p class="lh-20">https://testapi.bumeng.cn/asset/v1/issue?access_token=ACCESS_TOKEN</p>
+					<p class="lh-20">post数据格式：json</p>
+					<p class="lh-20">post数据示例：</p>
+					<p class="lh-20">
+</p><pre style="background: #dcdcdc;">	{
+		"trade_no":"1000009820141203513322",
+		"asset_issuer":"bubiV8iAvbAN319uVJPm2qrxdJNgXSdFSiyQoQ4Y",
+		"password":"asd123",
+		"asset_name":"绿耳朵资产",
+		"asset_unit":"朵",
+		"asset_amount":"21300",
+		"metadata": "{\"asset_type\":\"10600\",\"asset_unit_code\":\"15\",\"asset_description\":\"xxxxxxxxxxx\"}"
+	}
+</pre>				
+					<p></p>
+				</div>
+			</section>
+
+			<section id="issueAssetBySyn4_2" class="">
+				<h2>参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>access_token</td><td>调用接口票据号</td></tr>
+						<tr><td>password</td><td>待发行资产的账户密码</td></tr>
+						<tr><td>trade_no</td><td>接口调用凭据号,必须在开发者系统里保证唯一<br><span style="color:#C55911;">规则：仅包含字母数字，长度不能长于55个字符</span></td></tr>
+						<tr><td>asset_amount</td><td>发行资产数量<br><span style="color:#999999;">注: 数量按单位制最小进制表示，如1250分（等价于12.5元），区块链仅识别正整数</span></td></tr>
+						<tr><td>asset_issuer</td><td>资产发行方的区块链地址</td></tr>
+						<tr><td>asset_name</td><td>资产名称<span style="color:#999999;">（带中文，请用utf-8进行编码）</span><br><span style="color:#C55911;">规则：长度不能长于20个字符</span></td></tr>
+						<tr><td>asset_unit</td><td>资产单位<span style="color:#999999;">（带中文，请用utf-8进行编码）</span><br><span style="color:#C55911;">规则：长度不能长于6个字符</span></td></tr>
+						<tr><td>metadata</td><td>扩展字段[可选]</td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;asset_type</td><td>资产类型：<span style="color:#999999;">分类详情见&nbsp;<a href="https://www.bumeng.cn/api.html#assetType" style="color:#0af">资产类型规范</a></span><br>如：10600 代表数字黄金</td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;asset_unit_code</td><td>资产单位编码：<span style="color:#999999;">分类详情见&nbsp;<a href="https://www.bumeng.cn/api.html#assetUnitType" style="color:#0af">资产单位规范</a></span><br>如：15 代表毫克</td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;asset_description</td><td>资产描述</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+			<section id="issueAssetBySyn4_3" class="">
+				<h2>服务器响应</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+<pre style="background: #dcdcdc;">成功：
+{
+	"data": {
+		"asset_amount": 21300,
+		"asset_code": "7R3DPR6j5YyxrcXa7QsUJckNDeMyR26MtZVnbN6d4kCkfNejKczfT4j8adeJThRLcbBxPbGVuY5RNKqWSBcUFATW7smWuZzRfDUn",
+		"asset_issuer": "bubiV8iAvbAN319uVJPm2qrxdJNgXSdFSiyQoQ4Y",
+		"asset_name": "绿耳朵资产",
+		"asset_unit": "朵",
+		"bc_hash": "c44c595ce0a77d6a1f22a942ac397cc1cdc1edd654be56286a66af8364713b7d"
+	},
+	"err_code": "0",
+	"msg": "操作成功"
+}
+失败：
+{
+	"err_code":"20000",
+	"msg":"AccessToken 已过期"
+}
+</pre>
+				</div>
+			</section>
+		</div>
+
+		<div data-marker="issueAssetByASyn" class="con">
+			<h1>异步方式_发行资产</h1>
+			<p class="intro">开发者可以通过该接口自行发行资产</p>
+			<p class="intro">布萌服务器接收到请求数据后会立即响应给开发者结果为”资产正在发行”（正在进行区块链数据交互）。交互结果不管成功还是失败，布萌服务器会主动通知开发者，具体见“布萌通知接口”。</p>
+
+			<section id="issueAssetByASyn5_1" class="">
+				<h2 class="explain">接口请求说明</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+					<p class="lh-20">http请求方式：post</p>
+					<p class="lh-20">https://testapi.bumeng.cn/asset/v1/issueAsync?access_token=ACCESS_TOKEN</p>
+					<p class="lh-20">post数据格式：json</p>
+					<p class="lh-20">post数据示例：</p>
+					<p class="lh-20">
+</p><pre style="background: #dcdcdc;">{
+	"trade_no": "1000009820141203513322",
+	"asset_issuer": "bubiV8iAvbAN319uVJPm2qrxdJNgXSdFSiyQoQ4Y",
+	"password": "asd123",
+	"asset_name": "xx黄金",
+	"asset_unit": "毫克",
+	"asset_amount": "21300",
+	"metadata": "{\"asset_type\":\"10600\",\"asset_unit_code\":\"15\",\"asset_description\":\"xxxxxxxxxxx\"}"
+}
+</pre>
+					<p></p>
+				</div>
+			</section>
+
+			<section id="issueAssetByASyn5_2" class="">
+				<h2>参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>access_token</td><td>调用接口票据号</td></tr>
+						<tr><td>password</td><td>待发行资产的账户密码</td></tr>
+						<tr><td>trade_no</td><td>接口调用请求号,在开发者系统里生成<br><span style="color:#C55911;">规则：仅包含字母数字，长度不能长于55个字符</span></td></tr>
+						<tr><td>asset_amount</td><td>发行资产数量<br><span style="color:#999999;">注: 数量按单位制最小进制表示，如1250分（等价于12.5元），区块链仅识别正整数</span></td></tr>
+						<tr><td>asset_issuer</td><td>资产发行方的区块链地址</td></tr>
+						<tr><td>asset_name</td><td>资产名称<span style="color:#999999;">（带中文，请用utf-8进行编码）</span><br><span style="color:#C55911;">规则：长度不能长于20个字符</span></td></tr>
+						<tr><td>asset_unit</td><td>资产单位<span style="color:#999999;">（带中文，请用utf-8进行编码）</span><br><span style="color:#C55911;">规则：长度不能长于6个字符</span></td></tr>					
+						<tr><td>metadata</td><td>扩展字符串<br><span style="color:#C55911;">规则：不能超过1M</span> </td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;asset_type</td><td>资产类型：<span style="color:#999999;">分类详情见&nbsp;<a href="https://www.bumeng.cn/api.html#assetType" style="color:#0af">资产类型规范</a></span><br>如：10600 代表数字黄金</td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;asset_unit_code</td><td>资产单位编码：<span style="color:#999999;">分类详情见&nbsp;<a href="https://www.bumeng.cn/api.html#assetUnitType" style="color:#0af">资产单位规范</a></span><br>如：15 代表毫克</td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;asset_description</td><td>资产描述</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+			<section id="issueAssetByASyn5_3" class="">
+				<h2>服务器响应</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+<pre style="background: #dcdcdc;">成功：
+{
+	"data": {
+		"trade_no": "1000009820141203513322"
+	},
+	"err_code": "0",
+	"msg": "资产正在发行"
+}
+失败：
+{
+	"err_code":"20000",
+	"msg":"AccessToken 已过期"
+}
+</pre>
+				</div>
+			</section>
+		</div>
+		<div data-marker="getAssetInfo" class="con">
+			<h1>获取资产详情</h1>
+			<p class="intro">开发者可以通过本接口来获取资产详情。</p>
+			<section id="getAssetInfo_1" class="">
+				<h2 class="explain">接口请求说明</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+					<p class="lh-20">http请求方式：get</p>
+					<p class="lh-20">https://testapi.bumeng.cn/asset/v1/showDetail?asset_code=2UX4xvQ4aWvqd5KzUnUFz3ptvYEwFXPQLXGpYBtRp7ruT2Z5GqCFgbXWLxfif6vvu2yLZeMyukWf9f1FfCz6SSBR4Sz9AxMdxbXu7oXNMaCdXYLERopKCXbZ7WUNB1fvzR1aWXe2t1vZHSVv&amp;access_token=ACCESS_TOKEN</p>
+				</div>
+			</section>
+
+			<section id="getAssetInfo_2" class="">
+				<h2>参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>access_token</td><td>调用接口凭证</td></tr>
+						<tr><td>asset_code</td><td>资产ID</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+			<section id="getAssetInfo_3" class="">
+				<h2>服务器响应</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+<pre style="background: #dcdcdc;">成功：
+{
+	"data": {
+		"appId": "65f1e2d9caffc8bc25fb0b2260999e50",
+		"assetAmount": 1000000,
+		"assetCode": "2UX4xvQ4aWvqd5KzUnUFz3ptvYEwFXPQLXGpYBtRp7ruT2Z5GqCFgbXWLxfif6vvu2yLZeMyukWf9f1FfCz6SSBR4Sz9AxMdxbXu7oXNMaCdXYLERopKCXbZ7WUNB1fvzR1aWXe2t1vZHSVv",
+		"assetDescription": "一个神奇的美玉",
+		"assetIssuer": "bubiV8hUDBWPbDKLmj8d88Pvc9ckGBNCGzctMniw",
+		"assetName": "碧玉",
+		"assetType": "10100",
+		"assetUnit": "个",
+		"assetUnitCode": "1",
+		"createTime": 1490002929000,
+		"hash": "d4f40edd7ed3eee4fe573d9ba2aa585909acc6c9deaff783d873ded02c0c2749",
+		"metadata": "{\"asset_type\":\"10100\",\"asset_unit_code\":\"1\",\"asset_description\":\"一个神奇的美玉\"}",
+		"updateTime": 1490002929000
+	},
+	"err_code": "0",
+	"msg": "操作成功"
+}
+失败：
+{
+	"err_code":"20000",
+	"msg":"AccessToken 已过期"
+}
+</pre>
+				</div>
+			</section>
+			<section id="getAssetInfo_2" class="">
+				<h2>服务器响应主要参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>data</td><td></td></tr>
+						<tr><td>&nbsp;&nbsp;|&nbsp;&nbsp;appId</td><td>资产所属appId</td></tr>
+						<tr><td>&nbsp;&nbsp;|&nbsp;&nbsp;assetAmount</td><td>资产发行量</td></tr>
+						<tr><td>&nbsp;&nbsp;|&nbsp;&nbsp;assetDescription</td><td>资产描述<br><span style="color:#C55911;">注：没有按资产标准化后的数据没有该字段</span></td></tr>
+						<tr><td>&nbsp;&nbsp;|&nbsp;&nbsp;assetIssuer</td><td>资产发行方区块链地址</td></tr>
+						<tr><td>&nbsp;&nbsp;|&nbsp;&nbsp;assetName</td><td>资产名称</td></tr>
+						<tr><td>&nbsp;&nbsp;|&nbsp;&nbsp;assetType</td><td>资产类型，<span style="color:#C55911;">详情见&nbsp;<a href="https://www.bumeng.cn/api.html#assetType" style="color:#0af">资产类型规范</a><br>注：没有按资产标准化后的数据没有该字段</span></td></tr>
+						<tr><td>&nbsp;&nbsp;|&nbsp;&nbsp;assetUnit</td><td>资产单位<br><span style="color:#C55911;">注：没有按资产标准化后的数据没有该字段</span></td></tr>
+						<tr><td>&nbsp;&nbsp;|&nbsp;&nbsp;assetUnitCode</td><td>资产单位编码，<span style="color:#C55911;">详情见&nbsp;<a href="https://www.bumeng.cn/api.html#assetUnitType" style="color:#0af">资产单位规范</a><br>注：没有按资产标准化后的数据没有该字段</span></td></tr>
+						<tr><td>&nbsp;&nbsp;|&nbsp;&nbsp;createTime</td><td>资产创建时间</td></tr>
+						<tr><td>&nbsp;&nbsp;|&nbsp;&nbsp;hash</td><td>资产写入区块链时的hash</td></tr>
+						<tr><td>&nbsp;&nbsp;|&nbsp;&nbsp;metadata</td><td>资产发行时的扩展字段</td></tr>
+						<tr><td>&nbsp;&nbsp;|&nbsp;&nbsp;updateTime</td><td>资产更新时间</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+		</div>
+		<div data-marker="addAssetInfoBySyn" class="con">
+			<h1>同步方式_增发资产</h1>
+			<p class="intro">开发者可以通过该接口自行对现有资产进行数量增发。</p>
+			<p class="intro">当开发者增发资产并带有效期的资产时，需要设置资产明细列表。具体见示例</p>
+			<section id="addAssetInfoBySyn6_1" class="">
+				<h2 class="explain">接口请求说明</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+					<p class="lh-20">http请求方式：post</p>
+					<p class="lh-20">https://testapi.bumeng.cn/asset/v1/add2Issue?access_token=ACCESS_TOKEN</p>
+					<p class="lh-20">post数据格式：json</p>
+					<p class="lh-20">post数据示例：</p>
+<pre style="background: #dcdcdc;">{
+	"password":"asd123",
+	"trade_no":"1000009820141203513322",
+	"asset_code": "7R3DPR6j5YyxrcXa7QsUJckNDeMyR26MtZVnbN6d4kCkfNejKczfT4j8adeJThRLcbBxPbGVuY5RNKqWSBcUFATW7smWuZzRfDUn",
+	"asset_amount":"21300",
+	"metadata":"xxxxx"
+}
+</pre>
+				</div>
+			</section>
+
+			<section id="addAssetInfoBySyn6_2" class="">
+				<h2>参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>access_token</td><td>调用接口票据号</td></tr>
+						<tr><td>password</td><td>待发行资产的账户密码</td></tr>
+						<tr><td>trade_no</td><td>接口调用请求号,在开发者系统里生成<br><span style="color:#C55911;">规则：仅包含字母数字，长度不能长于55个字符</span></td></tr>
+						<tr><td>asset_amount</td><td>发行资产数量<br><span style="color:#999999;">注: 数量按单位制最小进制表示，如1250分（等价于12.5元），区块链仅识别正整数</span></td></tr>
+						<tr><td>asset_code</td><td>资产ID</td></tr>
+						<tr><td>metadata</td><td>扩展字段<span style="color:#999999;">（可选）</span></td></tr>						
+					</tbody></table>
+				</div>
+			</section>
+			<section id="addAssetInfoBySyn6_3" class="">
+				<h2>服务器响应</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+<pre style="background: #dcdcdc;">成功：
+{
+	"data": {
+		"asset_amount": 21300,
+		"asset_code": "7R3DPR6j5YyxrcXa7QsUJckNDeMyR26MtZVnbN6d4kCkfNejKczfT4j8adeJThRLcbBxPbGVuY5RNKqWSBcUFATW7smWuZzRfDUn",
+		"asset_issuer": "bubiV8iAvbAN319uVJPm2qrxdJNgXSdFSiyQoQ4Y",
+		"asset_name": "绿耳朵资产",
+		"asset_unit": "朵",
+"bc_hash": "c44c595ce0a77d6a1f22a942ac397cc1cdc1edd654be56286a66af8364713b7d"
+	},
+	"err_code": "0",
+	"msg": "操作成功"
+}
+失败：
+{
+	"err_code":"20000",
+	"msg":"AccessToken 已过期"
+}
+</pre>
+				</div>
+			</section>
+		</div>
+
+		<div data-marker="addAssetInfoByASyn" class="con">
+			<h1>异步方式_增发资产</h1>
+			<p class="intro">开发者可以通过该接口自行发行资产</p>
+			<p class="intro">布萌服务器接收到请求数据后会立即响应给开发者结果为”资产正在发行”（正在进行区块链数据交互）。交互结果不管成功还是失败，布萌服务器会主动通知开发者，具体见“布萌通知接口”。</p>
+			<section id="addAssetInfoByASyn7_1" class="">
+				<h2 class="explain">接口请求说明</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+					<p class="lh-20">http请求方式：post</p>
+					<p class="lh-20">https://testapi.bumeng.cn/asset/v1/add2IssueAsync?access_token=ACCESS_TOKEN</p>
+					<p class="lh-20">post数据格式：json</p>
+					<p class="lh-20">post数据示例：</p>
+<pre style="background: #dcdcdc;">{
+	"password":"asd123",
+	"trade_no":"1000009820141203513322",
+	"asset_code": "7R3DPR6j5YyxrcXa7QsUJckNDeMyR26MtZVnbN6d4kCkfNejKczfT4j8adeJThRLcbBxPbGVuY5RNKqWSBcUFATW7smWuZzRfDUn",
+	"asset_amount":"21300"，
+	"metadata":"xxxxx"
+}
+</pre>
+				</div>
+			</section>
+
+			<section id="addAssetInfoByASyn7_2" class="">
+				<h2>参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>access_token</td><td>调用接口票据号</td></tr>
+						<tr><td>password</td><td>待发行资产的账户密码</td></tr>
+						<tr><td>trade_no</td><td>接口调用请求号,在开发者系统里生成<br><span style="color:#C55911;">规则：仅包含字母数字，长度不能长于55个字符</span></td></tr>
+						<tr><td>asset_amount</td><td>发行资产数量<br><span style="color:#999999;">注: 数量按单位制最小进制表示，如1250分（等价于12.5元），区块链仅识别正整数</span></td></tr>
+						<tr><td>asset_code</td><td>资产ID</td></tr>
+						<tr><td>metadata</td><td>扩展字段<span style="color:#999999;">（可选）</span></td></tr>
+						
+					</tbody></table>
+				</div>
+			</section>
+			<section id="addAssetInfoByASyn7_3" class="">
+				<h2>服务器响应</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+<pre style="background: #dcdcdc;">成功：
+{
+	"data": {
+		"trade_no": "1000009820141203513322"
+	},
+	"err_code": "0",
+	"msg": "资产正在追加发行"
+}
+失败：
+{
+	"err_code":"20000",
+	"msg":"AccessToken 已过期"
+}
+
+</pre>
+				</div>
+			</section>
+		</div>
+		<div data-marker="transformAssetBySyn" class="con">
+			<h1>同步方式_转移资产</h1>
+			<p class="intro">开发者可以通过本接口来完成资产的转移。</p>
+			<p class="intro">资产拥有者将自己拥有的资产转移给他人</p>
+			<section id="transformAssetBySyn8_1" class="">
+				<h2 class="explain">接口请求说明</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+					<p class="lh-20">http请求方式：post</p>
+					<p class="lh-20">https://testapi.bumeng.cn/asset/v1/send?access_token=ACCESS_TOKEN</p>
+					<p class="lh-20">post数据格式：json</p>
+					<p class="lh-20">post数据示例：</p>
+<pre style="background: #dcdcdc;">{
+	"trade_no" : "2015121822911",
+	"current_string" : "MqUq6TASQju57VcH",
+	"password" : "abcd100",
+	"asset_code" : "7R3DPR6j5YyxrcXa7QsUJckNDeMyR26MtZVnbN6d4kCkfNejKczfT4j8adeJThRLcbBxPbGVuY5RNKqWSBcUFATW7smWuZzRfDUn",
+	"asset_amount" : "240",
+	"from_bubi_address" : "bubiV8iAvbAN319uVJPm2qrxdJNgXSdFSiyQoQ4Y",
+	"to_bubi_address" : "bubiV8iG97JVp7V7XhdAQN4Be8jMxF3giphVeU27",
+	"metadata" : "{\"sub_tx_type\":\"10100\"}",
+	"sign" : "kfB53Q4aSJmDLyKguiP6mG5bee2XmtbTNQ2"
+}</pre>
+				</div>
+			</section>
+			<section id="transformAssetBySyn8_2" class="">
+				<h2>参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>current_string</td><td>随机字符串，不长于32位</td></tr>
+						<tr><td>sign</td><td>TX签名,见签名算法，<span style="color:#C55911;">涉及到验签参数有current_string、trade_no、asset_code、asset_amount、from_bubi_address和to_bubi_address</span></td></tr>
+						<tr><td>password</td><td>资产转出方的账户密码</td></tr>
+						<tr><td>trade_no</td><td>接口调用请求号,在开发者系统里生成<br><span style="color:#C55911;">规则：仅包含字母数字，长度不能长于55个字符</span></td></tr>
+						<tr><td>asset_code</td><td>资产ID<br><span style="color:#999999;">转出方给转入方转让的资产标识（全网唯一）</span></td></tr>
+						<tr><td>asset_amount</td><td>资产转移数量<br><span style="color:#C55911;">规则：正整数</span></td></tr>
+						<tr><td>from_bubi_address</td><td>资产转出方区块链地址</td></tr>
+						<tr><td>to_bubi_address</td><td>资产转入方区块链地址</td></tr>
+						<tr><td>metadata</td><td></td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;sub_tx_type</td><td>TX类型：购物 10100 理财 10200 转账 10300 兑换 10400 还款 10500 缴费 10600 提现 10700 退款 10800</td></tr>			
+					</tbody></table>
+				</div>
+			</section>
+			<section id="transformAssetBySyn8_3" class="">
+				<h2>服务器响应</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+<pre style="background: #dcdcdc;">成功：
+{
+	"err_code":"0",
+	"msg":"资产转移成功",
+	"data":{
+		"trade_no":"2015121822911",
+		"tran_date": "1458888418607",
+		"bc_hash": "c44c595ce0a77d6a1f22a942ac397cc1cdc1edd654be56286a66af8364713b7d"
+	}
+}
+失败：
+{
+	"err_code":"20000",
+	"msg":"AccessToken 已过期"
+}
+</pre>
+				</div>
+			</section>
+		</div>
+
+		<div data-marker="transformAssetByASyn" class="con">
+			<h1>异步方式_转移资产</h1>
+			<p class="intro">开发者可以通过本接口来完成资产的异步转移。</p>
+			<p class="intro">布萌服务器接收到请求数据后会立即响应给开发者资产正在转移（正在进行区块链数据交互）。交互结果不管成功还是失败，布萌服务器会主动通知开发者，具体见“布萌通知接口”。</p>
+			<section id="transformAssetByASyn9_1" class="">
+				<h2 class="explain">接口请求说明</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+					<p class="lh-20">http请求方式：post</p>
+					<p class="lh-20">https://testapi.bumeng.cn/asset/v1/sendAsync?access_token=ACCESS_TOKEN</p>
+					<p class="lh-20">post数据格式：json</p>
+					<p class="lh-20">post数据示例：</p>
+<pre style="background: #dcdcdc;">{
+	"current_string": "MqUq6TASQju57VcH",
+	"password": "abcd100",
+	"sign": "kfB53Q4aSJmDLyKguiP6mG5bee2XmtbTNQ2",
+	"trade_no": "2015121822911",
+	"asset_code": "7R3DPR6j5YyxrcXa7QsUJckNDeMyR26MtZVnbN6d4kCkfNejKczfT4j8adeJThRLcbBxPbGVuY5RNKqWSBcUFATW7smWuZzRfDUn",
+	"asset_amount": "10000",
+	"from_bubi_address": "bubiV8iAvbAN319uVJPm2qrxdJNgXSdFSiyQoQ4Y",
+	"to_bubi_address": "bubiV8iG97JVp7V7XhdAQN4Be8jMxF3giphVeU27",
+	"metadata" : "{\"sub_tx_type\":\"10100\"}"
+}</pre>
+				</div>
+			</section>
+			<section id="transformAssetByASyn9_2" class="">
+				<h2>参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>current_string</td><td>随机字符串，不长于32位</td></tr>
+						<tr><td>sign</td><td>TX签名,见签名算法，<span style="color:#C55911;">涉及到验签参数有current_string、trade_no、asset_code、asset_amount、from_bubi_address和to_bubi_address</span></td></tr>
+						<tr><td>password</td><td>资产转出方的账户密码</td></tr>
+						<tr><td>trade_no</td><td>接口调用请求号,在开发者系统里生成<br><span style="color:#C55911;">规则：仅包含字母数字，长度不能长于55个字符</span></td></tr>
+						<tr><td>asset_code</td><td>资产ID<br><span style="color:#999999;">转出方给转入方转让的资产标识（全网唯一）</span></td></tr>
+						<tr><td>asset_amount</td><td>资产转移数量<br><span style="color:#999999;">参数不带小数点</span></td></tr>
+						<tr><td>from_bubi_address</td><td>资产转出方区块链地址</td></tr>
+						<tr><td>to_bubi_address</td><td>资产转入方区块链地址</td></tr>
+						<tr><td>metadata</td><td></td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;sub_tx_type</td><td>TX类型：购物 10100 理财 10200 转账 10300 兑换 10400 还款 10500 缴费 10600 提现 10700 退款 10800</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+			<section id="transformAssetByASyn9_3" class="">
+				<h2>服务器响应</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+<pre style="background: #dcdcdc;">成功：
+{
+	"data": {
+		"trade_no": "2015121822911"
+	},
+	"err_code": "0",
+	"msg": "资产正在转移"
+}
+
+失败：
+{
+	"err_code":"20000",
+	"msg":"AccessToken 已过期"
+}
+</pre>
+				</div>
+			</section>
+		</div>
+		
+		<div data-marker="getAccountInfo" class="con">
+			<h1>获取账户信息</h1>
+			<p class="intro">开发者可以通过本接口来获取开发者的用户的账户信息。</p>
+
+			<section id="getAccountInfo10_1" class="">
+				<h2 class="explain">接口请求说明</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+					<p class="lh-20">http请求方式：get</p>
+					<p class="lh-20">https://testapi.bumeng.cn/account/v1/info?bubi_address=bubiV8hyiVJUfp778o5h9MzAKPoLiGpgQ3FoMUDj&amp;access_token=ACCESS_TOKEN</p>
+				</div>
+			</section>
+			
+			<section id="getAccountInfo10_2" class="">
+				<h2>参数说明</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>access_token</td><td>调用接口凭证</td></tr>
+						<tr><td>bubi_address</td><td>用户唯一bubi_address</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+
+			<section id="getAccountInfo10_3" class="">
+				<h2>服务器响应</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+<pre style="background: #dcdcdc;">成功：
+{
+	"data": {
+		"assets": [{
+			"amount": 23,
+			"code": "7R3DPR6j5Xe3WviYGZhbTAugvqW5f6UyBULkTG8af",
+			"details": [{
+				"amount": 23,
+				"ext": "",
+				"length": -1,
+				"start": 1452941880
+			}]
+		},
+		{
+			"amount": 10,
+			"code": "7R3DPR6j5Xe3WviYGZhbTAugvqW5f6UyBULkTG8afZTVogb",
+			"details": [{
+				"amount": 10,
+				"ext": "",
+				"length": -1,
+				"start": 1452941880
+			}]
+		}],
+		"bubi_address": "bubiV8hyiVJUfp778o5h9MzAKPoLiGpgQ3FoMUDj",
+		"last_close_time":1453531750
+	},
+	"err_code": "0",
+	"msg": "操作成功"
+}
+失败：
+{
+	"err_code":"20000",
+	"msg":"AccessToken 已过期"
+}
+</pre>
+				</div>
+			</section>
+
+			<section id="getAccountInfo10_4" class="">
+				<h2>服务器响应主要参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>data</td><td></td></tr>
+						<tr><td>&nbsp;&nbsp;|&nbsp;assets</td><td>账户所拥有的资产列表</td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;code</td><td>资产ID</td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;amount</td><td>资产余额（该账户当前拥有的资产余额）</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+		</div>
+
+		<div data-marker="getTransactionInfoByAddr" class="con">
+			<h1>获取TX信息</h1>
+			<p class="intro">开发者可以通过本接口来获取开发者的用户的TX信息。</p>
+			<section id="getTransactionInfo11_1" class="">
+				<h2 class="explain">接口请求说明</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+					<p class="lh-20">http请求方式：get</p>
+					<p class="lh-20">https://testapi.bumeng.cn/account/v1/transaction?bubi_address=bubiV8hwmNvQ7M4VsQ7FMNM1WGiQv7RTA4GDzQbt&amp;access_token=ACCESS_TOKEN</p>
+				</div>
+			</section>
+			<section id="getTransactionInfo11_2" class="">
+				<h2>参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>access_token</td><td>调用接口凭证</td></tr>
+						<tr><td>bubi_address</td><td>用户唯一bubi_address</td></tr>
+						<tr><td>start</td><td>从第几页开始</td></tr>
+						<tr><td>limit</td><td>每页多少条，最大支持1000</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+			<section id="getTransactionInfo11_3" class="">
+				<h2>服务器响应</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+<pre style="background: #dcdcdc;">成功：
+{
+	"data": {
+		"transactions": [{
+			"operations": [{
+				"asset_amount": 100,
+				"asset_code": "7R3DPR6j5XdGghEbK8d8vScvw4MHjfKb4rGHVUFwf3h3SVD2iYVyfmzYLEDhYboogkoCytqHAJkhNowEzL4RcE55mGnavseecq4C",
+				"asset_issuer": "bubiV8hwmNvQ7M4VsQ7FMNM1WGiQv7RTA4GDzQbt",
+				"asset_type": 1,
+				"type": 2
+			}],
+			"source_address": "bubiV8hwmNvQ7M4VsQ7FMNM1WGiQv7RTA4GDzQbt"
+		},
+		{
+			"operations": [{
+				"asset_amount": 21300,
+				"asset_code": "7R3DPR6j5XdGghEbK8d8vScvw4MHjfKb4rGHVUFwf3h3SVD2iYVyfmzYHGPbCapD8CHWG34mi9DGbBM5eb6MGd63EhYoAdp1bS25",
+				"asset_issuer": "bubiV8hwmNvQ7M4VsQ7FMNM1WGiQv7RTA4GDzQbt",
+				"asset_type": 1,
+				"type": 2
+			}],
+			"source_address": "bubiV8hwmNvQ7M4VsQ7FMNM1WGiQv7RTA4GDzQbt"
+		}]
+	},
+	"err_code": "0",
+	"msg": "操作成功"
+}
+</pre>
+				</div>
+			</section>
+
+			<section id="getTransactionInfo11_4" class="">
+				<h2>服务器响应主要参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>data</td><td></td></tr>
+						<tr><td>&nbsp;&nbsp;|&nbsp;transactions</td><td>TX列表</td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;operations</td><td>操作列表</td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;asset_code</td><td>资产ID</td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;asset_amount</td><td>资产流通的数量</td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;asset_issuer</td><td>资产发行方（资方）区块链地址</td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;asset_type</td><td>资产类型：1 数字资产</td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;type</td><td>操作类型：0 创建用户 1 资产转移（资产流通） 2 发行资产 </td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;dest_address</td><td>目标区块链账户地址<br><span style="color:#999999;">如：操作类型是创建账户时，该字段表示待创建的账户地址。<br>操作类型是资产转移（资产流通）时，该字段表示资产接收方区块链账户地址</span></td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;| source_address</td><td>发起操作人地址<br><span style="color:#C55911;">注：该字段根据具体业务创建出现</span></td></tr>
+					</tbody></table>
+				</div>
+			</section>
+		</div>
+		
+		<div data-marker="getTransactionInfoByTradeNo" class="con">
+			<h1>通过TX请求号（trade_no）查询TX信息</h1>
+			<p class="intro">开发者可以通过本接口来获取开发者调用资产转移时的TX结果信息</p>
+			<p class="intro">注意：该接口只返回成功的TX信息</p>
+			<section id="getTransactionInfoByTradeNo_1" class="">
+				<h2 class="explain">接口请求说明</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+					<p class="lh-20">http请求方式：get</p>
+					<p class="lh-20">https://testapi.bumeng.cn/tx/v1/tradeNo/{trade_no}?access_token=ACCESS_TOKEN</p>
+				</div>
+			</section>
+			<section id="getTransactionInfoByTradeNo_2" class="">
+				<h2>参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>access_token</td><td>调用接口凭证</td></tr>
+						<tr><td>trade_no</td><td>TX hash</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+			<section id="getTransactionInfoByTradeNo_3" class="">
+				<h2>服务器响应</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+<pre style="background: #dcdcdc;">成功：
+{
+	"data": [
+	    {
+	      "asset_amount": 99,
+	      "asset_code": "2UX4xvQ4aXQ9r9WLVamkhYKWanqukEye8uG5gkCgeiRodaBHHhe4vYNK1VteRdsCueJtv7yE3ojmJLC8h7cESKLyJYXshNWQD33Ptrcuvd8hvgrAiWwr7MxyjY3JerPyxmpq79FJJfjYDYNA",
+	      "asset_name": "花牛贝",
+	      "form_bubi_address": "bubiV8iAUpg2Va7xGTtu644kPLJRd7pZtBwrW7ve",
+	      "hash": "fc367013713ef78960d64e721ff5e5f028116586725e42b73c51edc82fd61271",
+	      "metadata": "444",
+	      "to_bubi_address": "bubiV8hyMs9sgNjaFjDmtpqrTvSgoipirVvCPRRo",
+	      "tran_date": 1505974842000
+	    }
+  	],
+  	"err_code": "0",
+  	"msg": "操作成功"
+}
+</pre>
+				</div>
+			</section>
+
+			<section id="getTransactionInfoByTradeNo_4" class="">
+				<h2>服务器响应主要参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>data</td><td></td></tr>
+						<tr><td>&nbsp;&nbsp;|&nbsp;trade_no</td><td>TX请求号</td></tr>
+						<tr><td>&nbsp;&nbsp;|&nbsp;transactions</td><td>TX数据集合</td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;tran_date</td><td>TX时间<br><span style="color:#999999;">返回Linux时间戳，精确到毫秒</span></td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;hash</td><td>TX摘要</td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;form_bubi_address</td><td>TX发起方区块链地址</td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;asset_code</td><td>资产编码</td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;asset_name</td><td>资产名称</td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;asset_amount</td><td>TX的资产数量</td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;to_bubi_address</td><td>TX接收方区块链地址</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+		</div>
+
+		<div data-marker="getTransactionInfoByHash" class="con">
+			<h1>通过TX hash获取TX信息</h1>
+			<p class="intro">开发者可以通过本接口来获取开发者的用户的TX信息。</p>
+			<section id="getTransactionInfoByHash_1" class="">
+				<h2 class="explain">接口请求说明</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+					<p class="lh-20">http请求方式：get	</p>
+					<p class="lh-20">https://testapi.bumeng.cn/tx/v1/{hash}?access_token=ACCESS_TOKEN</p>
+				</div>
+			</section>
+			<section id="getTransactionInfoByHash_2" class="">
+				<h2>参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>access_token</td><td>调用接口凭证</td></tr>
+						<tr><td>hash</td><td>TX hash</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+			<section id="getTransactionInfoByHash_3" class="">
+				<h2>服务器响应</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+<pre style="background: #dcdcdc;">成功：
+{
+	"data": {
+		"transactions": [{
+			"apply_time": "1487127013651499",
+			"hash": "0791b0b660aa0d8630a48338a3f7c63859ab04b4b6c22c85a1521b56ea0fc1b3",
+			"metadata": "",
+			"operations": [{
+				"asset_amount": "1000000",
+				"asset_code": "2UX4xvQ4aXP7vCXACafxEF928LKNb8EihUr7syECp4yCruQnt2PukCB3CtrvLMwTRAemiPnW9XnAHogzE8M6SxK1gb5rftfb5vGduGYBULSxDF3ecJFYjRYTxFdsLfS7jmaAJTectLt9WgGg",
+				"metadata": "0",
+				"source_address": "bubiV8i8gKL1Pd4YYuaKFNF2kCP1jJPAGmkfwSLV",
+				"type": 2
+			}],
+			"signatures": [{
+				"address": "bubiV8i8gKL1Pd4YYuaKFNF2kCP1jJPAGmkfwSLV",
+				"public_key": "CTFESHZJyQfAFKahEwgQXuBJq7pbdPzbzZdQsFG6H2UM",
+				"sign_data": "5fae6cc3d6191e175e76243c3532593cdb6b20ec637c283ba5ec8fb20264c6ca7ae5b46fa02c9b6f345601fe3b46095da9888b26344cd4991ff33bad4170870e"
+			},
+			{
+				"address": "bubiV8iEGXpLEtfcBUpwDNeUu6ZjGA5yX8KtivT3",
+				"public_key": "EBfariVD7AbLNFqAwkEbq8tD5y3Mdn7PXRMDGkDHQJg7",
+				"sign_data": "f9a64fa149a26731661adf81ab891114a7057fc0785f3dc01e3b220891cc3358a286bcc00c2cc2a8b1b75550f0b4e4b83236e09279d610c8a70d33b00fb9f50a"
+			}],
+			"source_address": "bubiV8iEGXpLEtfcBUpwDNeUu6ZjGA5yX8KtivT3"
+		}]
+	},
+	"err_code": "0",
+	"msg": "操作成功"
+}
+</pre>
+				</div>
+			</section>
+
+			<section id="getTransactionInfoByHash_4" class="">
+				<h2>服务器响应主要参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>data.transactions.operations</td><td>操作列表，内容见&nbsp;&nbsp;&nbsp;<a href="https://www.bumeng.cn/api.html#operationSample_1" style="color:#0af">操作示例</a></td></tr>
+						<tr><td>data.transactions.operations.type</td><td>操作类型：0 创建用户 1 资产转移 2 发行资产</td></tr>
+						<tr><td>data.transactions.source_address</td><td>资产流动源地址</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+		</div>
+
+		<div data-marker="notice" class="con">
+			<h1>布萌通知接口</h1>
+			<p class="intro">当开发者调用布萌提供的资产发行、资产转移异步接口后，不管最终成功或失败，布萌都会向开发者发出通知，告知执行结果。</p>
+			<p class="intro">开发者收到通知后，请以通知类型（notice_type）区分各自业务逻辑的处理。</p>
+			<p class="intro">无论接收到的结果如何，只要开发者收到该请求，请返回ok字符串（不含其它字符，如双引号），否则布萌将进行重复通知，直到开发者收到或者重复5次。</p>
+			<section id="notice12_1" class="">
+				<h2 class="explain">接口请求说明</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+					<p class="lh-20">http请求方式：get</p>
+					<p>					</p>
+					<p class="lh-20">数据示例：</p>
+					<p class="lh-20">异步资产发行：</p>
+					<p class="lh-20">asset_amount=10000&amp;asset_code=7R3DPR6j5YyxrcXa7QsUJckNDeMyR26MtZVnbN6d4kCkfNejKczfT4j8adeJThRLcbBxPbGVuY5RNKqWSBcUFATW7smWuZzRfDUn&amp;asset_issuer=bubiV8iAvbAN319uVJPm2qrxdJNgXSdFSiyQoQ4Y&amp;current_string=MqUq6TASQju57VcH&amp;err_code=0&amp;msg=成功&amp;<span style="color:#d80616;">notify_type=0</span>&amp;bc_hash=c44c595ce0a77d6a1f22a942ac397cc1cdc1edd654be56286a66af8364713b7d&amp;issue_date=1458888418607&amp;sign=b7086ab0a42a33de6093c545cfbb4aa0&amp;trade_no=201601141221</p>
+					<p>					</p>
+					<p class="lh-20">异步资产转移：</p>
+					<p class="lh-20">current_string=MqUq6TASQju57VcH&amp;err_code=0&amp;msg=成功&amp;<span style="color:#d80616;">notify_type=1</span>&amp;bc_hash=c44c595ce0a77d6a1f22a942ac397cc1cdc1edd654be56286a66af8364713b7d&amp;tran_date=1458888418607&amp;sign=0adc527707990c71e5faf09b60f38dcf&amp;trade_no=201601141223</p>
+					<p>					</p>
+					<p class="lh-20">异步资产追加发行：</p>
+					<p class="lh-20">current_string=MqUq6TASQju57VcH&amp;err_code=0&amp;msg=成功&amp;<span style="color:#d80616;">notify_type=3</span>&amp;bc_hash=c44c595ce0a77d6a1f22a942ac397cc1cdc1edd654be56286a66af8364713b7d&amp;issue_date=1458888418607&amp;sign=3552349bc445db3a9ed55bc1ae5c3eaf&amp;trade_no=201601141225</p>
+				</div>
+			</section>
+
+			<section id="notice12_2" class="">
+				<h2>部分参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>notify_type</td><td>通知类型，0 资产发行 1 资产转移  3 资产追加发行 4 资产兑换 5 资产承兑</td></tr>
+						<tr><td>err_code</td><td>0 成功 非零具体见错误码  </td></tr>
+						<tr><td>sign</td><td>签名，见签名算法<br><span style="color:#C55911;">注：全部字段进行签名</span></td></tr>
+						<tr><td>msg</td><td>通知消息</td></tr>
+						<tr><td>bc_hash</td><td>区块链hash</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+
+			<section id="notice12_3" class="">
+				<h2>响应参数</h2>
+				<p class="lh-20">开发者服务器端收到通知并处理完成后，请返回纯文本的 ok 字符串，两边不带空格，忽略大小写，布萌在验证到响应为 ok 后会标记通知成功。</p>
+				<p class="lh-20">如果响应为非 ok 字符串，布萌会最多重试 5 次通知。 通知时间间隔为：15秒，30秒，1分钟，2分钟</p>
+			</section>
+		</div>
+
+		<div data-marker="selectAccountRegStatus" class="con">
+			<h1>查询账户注册状态</h1>
+			<p class="intro">布萌提供账户注册状态查询功能，以便开发者在不确定账户注册执行状态的情况下，通过主动查询来确认账户注册的状态。</p>
+			<section id="selectAccountRegStatus13_1" class="">
+				<h2 class="explain">接口请求说明</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+					<p class="lh-20">http请求方式：get</p>
+					<p class="lh-20">https://testapi.bumeng.cn/status/account/v1/register?trade_no=1000009820141203515766&amp;access_token=ACCESS_TOKEN</p>
+				</div>
+			</section>
+			<section id="selectAccountRegStatus13_2" class="">
+				<h2>参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>access_token</td><td>调用接口凭证</td></tr>
+						<tr><td>trade_no</td><td>请求号：开发者需要保证其唯一</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+			<section id="selectAccountRegStatus13_3" class="">
+				<h2>服务器响应</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+<pre style="background: #dcdcdc;">json格式如下：
+{
+	"err_code":"0",
+	"msg":"成功",
+	"data":{
+		"bubi_address":"bubiV8hwYmkBgcQjeEqus685iZeACmHm6R9GBBVo"
+	}
+}
+或：
+{
+	"err_code":"20000",
+	"msg":"AccessToken 已过期"
+}
+或：
+{
+	"err_code":"20009",
+	"msg":"处理中"
+}
+</pre>
+				</div>
+			</section>
+		</div>
+
+
+		<div data-marker="selectAssetIssueStatus" class="con">
+			<h1>查询资产发行状态</h1>
+			<p class="intro">布萌提供资产发行状态查询功能，以便开发者在不确定资产发行执行状态的情况下，通过主动查询来确认资产发行的状态。</p>
+			<section id="selectAssetIssueStatus14_1" class="">
+				<h2 class="explain">接口请求说明</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+					<p class="lh-20">http请求方式：get</p>
+					<p class="lh-20">https://testapi.bumeng.cn/status/asset/v1/issue?trade_no=1000009820141203515766&amp;access_token=ACCESS_TOKEN</p>
+				</div>
+			</section>
+			<section id="selectAssetIssueStatus14_2" class="">
+				<h2>参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>access_token</td><td>调用接口凭证</td></tr>
+						<tr><td>trade_no</td><td>请求号：开发者需要保证其唯一</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+			<section id="selectAssetIssueStatus14_3" class="">
+				<h2>服务器响应</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+<pre style="background: #dcdcdc;">json格式如下：
+{
+	"err_code":"0",
+	"msg":"资产发行成功",
+	"data":{
+		"asset_name":"布萌股权第一期",
+		"asset_issuer":"bubiV8iAvbAN319uVJPm2qrxdJNgXSdFSiyQoQ4Y",
+"asset_code":"7R3DPR6j5YyxrcXa7QsUJckNDeMyR26MtZVnbN6d4kCkfNejKczfT4j8adeJThRLcbBxPbGVuY5RNKqWSBcUFATW7smWuZzRfDUn",
+		"asset_unit":"股",
+		"asset_amount":10000,,
+		"issue_date": "1458888418607",
+		"bc_hash":"c44c595ce0a77d6a1f22a942ac397cc1cdc1edd654be56286a66af8364713b7d"
+	}
+}
+或
+{
+	"err_code":"20000",
+	"msg":"AccessToken 已过期"
+}
+或
+{
+	"err_code":"20009",
+	"msg":"处理中"
+}
+</pre>
+				</div>
+			</section>
+		</div>
+
+
+		<div data-marker="selectAssetTransformStatus" class="con">
+			<h1>查询资产转移状态</h1>
+			<p class="intro">布萌提供资产转移状态查询功能，以便开发者在不确定资产转移执行状态的情况下，通过主动查询来确认资产转移的状态。</p>
+			<section id="selectAssetTransformStatus15_1" class="">
+				<h2 class="explain">接口请求说明</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+					<p class="lh-20">http请求方式：get</p>
+					<p class="lh-20">https://testapi.bumeng.cn/status/asset/v1/send?trade_no=1000009820141203515766&amp;access_token=ACCESS_TOKEN</p>
+				</div>
+			</section>
+			<section id="selectAssetTransformStatus15_2" class="">
+				<h2>参数说明</h2>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">参数</th><th>说明</th></tr>
+						<tr><td>access_token</td><td>调用接口凭证</td></tr>
+						<tr><td>trade_no</td><td>请求号：开发者需要保证其唯一</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+			<section id="selectAssetTransformStatus15_3" class="">
+				<h2>服务器响应</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+<pre style="background: #dcdcdc;">json格式如下：
+{
+	"err_code":"0",
+	"msg":"资产转移成功",
+	"data":{
+		"trade_no":"1000009820141203515766",
+		"tran_date": "1458888418607",
+		"bc_hash":"c44c595ce0a77d6a1f22a942ac397cc1cdc1edd654be56286a66af8364713b7d"
+	}
+}
+或
+{
+	"err_code":"20000",
+	"msg":"AccessToken 已过期"
+}
+或
+{
+	"err_code":"20009",
+	"msg":"处理中"
+}
+</pre>
+				</div>
+			</section>
+		</div>
+		
+		<div data-marker="assetType" class="con">
+			<h1>资产类型规范</h1>
+			<section id="assetType">
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">资产类型名</th><th>资产类型码</th></tr>
+						<tr><td>商业积分</td><td>10100</td></tr>
+						<tr><td>保险卡单</td><td>10200</td></tr>
+						<tr><td>网络互助</td><td>10300</td></tr>
+						<tr><td>慈善公益</td><td>10400</td></tr>
+						<tr><td>P2P理财</td><td>10500</td></tr>
+						<tr><td>数字黄金</td><td>10600</td></tr>
+						<tr><td>游戏道具</td><td>10700</td></tr>
+						<tr><td>其他</td><td>10800</td></tr>
+						<tr><td>卡券</td><td>10900</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+		</div>
+		
+		<div data-marker="assetUnitType" class="con">
+			<h1>资产单位规范</h1>
+			<section id="assetUnitType">
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">资产单位名</th><th>资产单位码</th></tr>
+						<tr><td>个</td><td>1</td></tr>
+						<tr><td>枚</td><td>2</td></tr>
+						<tr><td>份</td><td>3</td></tr>
+						<tr><td>分</td><td>4</td></tr>
+						<tr><td>积分</td><td>5</td></tr>
+						<tr><td>颗</td><td>6</td></tr>
+						<tr><td>棵</td><td>7</td></tr>
+						<tr><td>粒</td><td>8</td></tr>
+						<tr><td>元</td><td>9</td></tr>
+						<tr><td>角</td><td>10</td></tr>
+						<tr><td>分</td><td>11</td></tr>
+						<tr><td>吨</td><td>12</td></tr>
+						<tr><td>千克</td><td>13</td></tr>
+						<tr><td>克</td><td>14</td></tr>
+						<tr><td>毫克</td><td>15</td></tr>
+						<tr><td>其他</td><td>16</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+		</div>
+
+		<div data-marker="errorCode" class="con">
+			<h1>错误码</h1>
+			<section>
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">错误码</th><th>说明</th></tr>
+						<tr><td>10000</td><td>操作失败，请稍后重试</td></tr>
+						<tr><td>10001</td><td>参数校验失败</td></tr>
+						<tr><td>20000</td><td>AccessToken 已过期</td></tr>
+						<tr><td>20001</td><td>开发者回调uri地址为空</td></tr>
+						<tr><td>20002</td><td>开发者ID授权存在异常</td></tr>
+						<tr><td>20003</td><td>开发者ID 不存在</td></tr>
+						<tr><td>20004</td><td>请求参数非法</td></tr>
+						<tr><td>20005</td><td>参数格式非法</td></tr>
+						<tr><td>20006</td><td>解析参数出现异常</td></tr>
+						<tr><td>20007</td><td>签名不能为空</td></tr>
+						<tr><td>20008</td><td>应用不存在或已下架</td></tr>
+						<tr><td>20009</td><td>处理中</td></tr>
+						<tr><td>20010</td><td>AppId不存在或已删除</td></tr>
+						<tr><td>20011</td><td>应用未授权</td></tr>
+						<tr><td>20012</td><td>应用权限被锁定</td></tr>
+						<tr><td>20013</td><td>AppKey不存在或已删除</td></tr>
+						<tr><td>20014</td><td>appID和appKey不匹配</td></tr>
+						<tr><td>20015</td><td>授权码不存在或已过期</td></tr>
+						<tr><td>20016</td><td>请求参数非法，资产发行请求号不能为空</td></tr>
+						<tr><td>20017</td><td>操作异常,原因可能是重复提交</td></tr>
+						<tr><td>20018</td><td>授权码长度必须是%d</td></tr>
+						<tr><td>20019</td><td>区块链ID长度必须是%d</td></tr>
+						<tr><td>20020</td><td>回调地址长度不能大于%d</td></tr>
+						<tr><td>20021</td><td>请求号长度不能大于%d</td></tr>
+						<tr><td>20023</td><td>区块链地址不能为空</td></tr>
+						<tr><td>20024</td><td>无效的区块链地址</td></tr>
+						<tr><td>20025</td><td>无效的用户名</td></tr>
+						<tr><td>20026</td><td>非法操作</td></tr>
+						<tr><td>20027</td><td>区块链账户与密码不匹配</td></tr>
+						<tr><td>20028</td><td>批量创建账户数量过多</td></tr>
+						<tr><td>20029</td><td>票据发行者或票据托管者为空</td></tr>
+						<tr><td>20030</td><td>操作失败</td></tr>
+						<tr><td>20031</td><td>账户不存在或账户未激活</td></tr>
+						<tr><td>20032</td><td>承兑方服务维护中</td></tr>
+						<tr><td>2006</td><td>签名失败,可能原因是非法操作合同</td></tr>
+						<tr><td>21100</td><td>请输入用户名</td></tr>
+						<tr><td>21101</td><td>请输入区块链账户密码</td></tr>
+						<tr><td>21102</td><td>用户名不存在</td></tr>
+						<tr><td>21103</td><td>用户名与密码不匹配</td></tr>
+						<tr><td>21104</td><td>用户名长度不能大于%d</td></tr>
+						<tr><td>21105</td><td>密码长度不能大于%d</td></tr>
+						<tr><td>21106</td><td>账号请求号已存在</td></tr>
+						<tr><td>21107</td><td>账号请求号为空</td></tr>
+						<tr><td>21108</td><td>支付密码长度必须是%d</td></tr>
+						<tr><td>21109</td><td>账号请求号不存在</td></tr>
+						<tr><td>21110</td><td>写入区块链失败</td></tr>
+						<tr><td>21111</td><td>修改密码失败</td></tr>
+						<tr><td>21112</td><td>联合签名者至少填写一个</td></tr>
+						<tr><td>21200</td><td>资产发行请求号不能为空</td></tr>
+						<tr><td>21201</td><td>发行方区块链ID不能为空</td></tr>
+						<tr><td>21202</td><td>资产名称不能为空</td></tr>
+						<tr><td>21203</td><td>资产单位不能为空</td></tr>
+						<tr><td>21204</td><td>资产发行数量不能为空</td></tr>
+						<tr><td>21205</td><td>资产发行数量必须是整数</td></tr>
+						<tr><td>21206</td><td>资产发行方区块链ID不存在</td></tr>
+						<tr><td>21207</td><td>资产发行请求号已被使用</td></tr>
+						<tr><td>21208</td><td>资产请求号长度不能大于%d</td></tr>
+						<tr><td>21209</td><td>资产发行方区块链ID长度必须是%d</td></tr>
+						<tr><td>21210</td><td>资产名称长度不能大于%d</td></tr>
+						<tr><td>21211</td><td>资产单位长度不能大于%d</td></tr>
+						<tr><td>21212</td><td>资产数量长度不能大于%d</td></tr>
+						<tr><td>21213</td><td>资产数量不能大于%d</td></tr>
+						<tr><td>21214</td><td>资产代码长度必须是%d</td></tr>
+						<tr><td>21215</td><td>资产代码格式错误</td></tr>
+						<tr><td>21216</td><td>资产请求号不存在</td></tr>
+						<tr><td>21217</td><td>资产转移失败</td></tr>
+						<tr><td>21222</td><td>资产编号不存在</td></tr>
+						<tr><td>21300</td><td>随机字符串不能为空</td></tr>
+						<tr><td>21301</td><td>随机字符串长度不能大于%d</td></tr>
+						<tr><td>21302</td><td>资产描述或TX摘要不能不长于%d</td></tr>
+						<tr><td>21303</td><td>资产请求号不能为空</td></tr>
+						<tr><td>21304</td><td>资产名称不能为空</td></tr>
+						<tr><td>21305</td><td>资产单位不能为空</td></tr>
+						<tr><td>21306</td><td>资产代码不能为空</td></tr>
+						<tr><td>21307</td><td>资产转移数量不能为空</td></tr>
+						<tr><td>21308</td><td>资产转出方区块链ID不能为空</td></tr>
+						<tr><td>21309</td><td>资产转入方区块链ID不能为空</td></tr>
+						<tr><td>21310</td><td>资产转移签名验证失败</td></tr>
+						<tr><td>21311</td><td>资产转出方不存在</td></tr>
+						<tr><td>21312</td><td>资产转出方账户出现异常</td></tr>
+						<tr><td>21313</td><td>资产转入方不存在</td></tr>
+						<tr><td>21314</td><td>资产转入方账户出现异常</td></tr>
+						<tr><td>21315</td><td>待转移资产不存在</td></tr>
+						<tr><td>21316</td><td>待资产转移数量必须是整数</td></tr>
+						<tr><td>21317</td><td>资产转出方区块链ID长度必须是%d</td></tr>
+						<tr><td>21318</td><td>资产转入方区块链ID长度必须是%d</td></tr>
+						<tr><td>21319</td><td>签名长度必须是%d</td></tr>
+						<tr><td>21320</td><td>资产转移请求号已存在</td></tr>
+						<tr><td>21321</td><td>资产转移请求号不存在</td></tr>
+						<tr><td>21322</td><td>转出方未写入区块链</td></tr>
+						<tr><td>21323</td><td>资产转移失败</td></tr>
+						<tr><td>21400</td><td>请输入用户名</td></tr>
+						<tr><td>21401</td><td>请设置账户密码</td></tr>
+						<tr><td>21402</td><td>请设置支付密码</td></tr>
+						<tr><td>21403</td><td>用户名已存在</td></tr>
+						<tr><td>21404</td><td>开发者ID存在异常</td></tr>
+						<tr><td>21405</td><td>用户名长度最少1个字符，最多25个字符</td></tr>
+						<tr><td>21406</td><td>账户密码长度最少8个字符，最多45个字符</td></tr>
+						<tr><td>21407</td><td>账户密码只能由数字+字母组成（存在其他字符）</td></tr>
+						<tr><td>21408</td><td>账户密码需由数字+字母组成（全数字或全字母）</td></tr>
+						<tr><td>21409</td><td>支付密码长度只能是6位</td></tr>
+						<tr><td>21500</td><td>请输入账户支付密码</td></tr>
+						<tr><td>21501</td><td>支付密码错误</td></tr>
+						<tr><td>21502</td><td>发行资产数量不能大于%d</td></tr>
+						<tr><td>21600</td><td>获取账户信息区块链ID不能为空</td></tr>
+						<tr><td>21601</td><td>账户信息不存在</td></tr>
+						<tr><td>21700</td><td>资产发行请求号不能为空</td></tr>
+						<tr><td>21701</td><td>资产发行方账户密码不能为空</td></tr>
+						<tr><td>21702</td><td>资产发行方不能为空</td></tr>
+						<tr><td>21703</td><td>资产名称不能为空</td></tr>
+						<tr><td>21704</td><td>资产单位不能为空</td></tr>
+						<tr><td>21705</td><td>资产待发行数量必须是正整数</td></tr>
+						<tr><td>21707</td><td>资产发行者区块链ID不存在</td></tr>
+						<tr><td>21708</td><td>发行者账户密码验证失败,账户及密码不匹配</td></tr>
+						<tr><td>21709</td><td>此接口只针对安全级别低的账户开放</td></tr>
+						<tr><td>21710</td><td>此接口只针对安全级别高的账户开放</td></tr>
+						<tr><td>21800</td><td>资产转移签名所需随机字符串不能为空</td></tr>
+						<tr><td>21801</td><td>资产转移签名所需随机字符串长度不能大于%d</td></tr>
+						<tr><td>21802</td><td>资产转出方账户密码不能为空</td></tr>
+						<tr><td>21803</td><td>资产描述或摘要长度不能大于%d</td></tr>
+						<tr><td>21804</td><td>资产转移请求号不能为空</td></tr>
+						<tr><td>21805</td><td>待转移资产名称不能为空</td></tr>
+						<tr><td>21806</td><td>待转移资产单位不能为空</td></tr>
+						<tr><td>21807</td><td>待转移资产代码不能为空</td></tr>
+						<tr><td>21808</td><td>待转移资产数量不能为空</td></tr>
+						<tr><td>21809</td><td>待转移资产数量必须是正整数</td></tr>
+						<tr><td>21810</td><td>待资产转出方区块链ID不能为空</td></tr>
+						<tr><td>21811</td><td>待资产转入方区块链ID不能为空</td></tr>
+						<tr><td>21812</td><td>待转移资产sign不能为空</td></tr>
+						<tr><td>21813</td><td>开发者ID出现异常</td></tr>
+						<tr><td>21814</td><td>签名错误</td></tr>
+						<tr><td>21815</td><td>资产转出方账户出现异常</td></tr>
+						<tr><td>21816</td><td>转出方必须通过手动输入支付密码进行确认资产转移</td></tr>
+						<tr><td>21817</td><td>资产转出方账户与密码不匹配</td></tr>
+						<tr><td>21818</td><td>资产转入方账户不存在</td></tr>
+						<tr><td>21819</td><td>资产转入方账户出现异常</td></tr>
+						<tr><td>21820</td><td>待转移资产不存在</td></tr>
+						<tr><td>21821</td><td>资产数量不足</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+		</div>
+
+
+		<div data-marker="signAlgorithm" class="con signAlgorithm">
+			<h1>签名算法</h1>
+			<p class="intro">签名生成的通用步骤如下：</p>
+			<ul class="sub-ul">
+				<li class="sub-li">将涉及到的数据，按照参数名ASCII码从小到大排序（字典序），使用URL键值对的格式（即key1=value1&amp;key2=value2…）拼接成字符串stringA。
+					<strong>特别注意一下重要规则：</strong>
+					<ul class="sub-ul-sub">
+						<li>参数名ASCII码从小到大排序（字典序）； </li>
+						<li>如果参数的值为空不参与签名； </li>
+						<li>参数名区分大小写；</li>
+						<li>验证调用返回或布萌主动通知签名时，传送的sign参数不参与签名，将生成的签名与该sign值作校验。</li>
+					</ul>
+				</li>
+				<li class="intro">在stringA最后拼接上key得到tempSignStr字符串，并对tempSignStr进行MD5运算，再将得到的字符串所有字符转换为小写，得到sign值signValue。</li>
+				<li class="intro">Key值为开发者的appKey</li>
+			</ul>
+			<section id="signAlgorithm17_1" class="signAlgorithm11_1">
+				<h2 class="explain">资产转移示例：</h2>
+				<div class="bgcolor-f9f9f9 p-10">
+					<p class="lh-28">资产转移传送的参数如下：</p>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">键</th><th>值</th></tr>
+						<tr><td>current_string</td><td>MqUq6TASQju57VcH</td></tr>
+						<tr><td>trade_no</td><td>2015121822911</td></tr>
+						<tr><td>asset_code</td><td>a811d986d4a60535bbee2af87d3b9772</td></tr>
+						<tr><td>asset_amount</td><td>10000</td></tr>
+						<tr><td>from_bubi_address</td><td>bubiV8hyQKo56DSqJmXVQXHXmtbTNQWRnAy4ZwSZ</td></tr>
+						<tr><td>to_bubi_address</td><td>bubiV8hxkfB53Q4aSJmDLyKguiP6mG5NrPQhTxF7</td></tr>
+					</tbody></table>
+					<ul>
+						<li>
+							<h5>第一步，对参数按照key=value的格式，并按照参数名ASCII字典序排序如下：  </h5>
+							<p>stringA=”asset_amount=10000&amp;asset_code=a811d986d4a60535bbee2af87d3b9772&amp;current_string=MqUq6TASQju57VcH&amp;from_bubi_address=bubiV8hyQKo56DSqJmXVQXHXmtbTNQWRnAy4ZwSZ&amp;to_bubi_address=bubiV8hxkfB53Q4aSJmDLyKguiP6mG5NrPQhTxF7&amp;trade_no=2015121822911”;</p>
+						</li>
+						<li>
+							<h5>第二步，拼接appKey</h5>
+							<p class="lh-20">tempSignStr = “stringA&amp;key=73869d83e9b3fac6ec3b37c3b2ec5f15”</p>
+							<p class="lh-20">sign = MD5(tempSignStr ).toLowerCase();</p>
+						</li>
+						<li>
+							<h5>最终得到的数据是：</h5>
+							<p class="lh-20">asset_amount=10000&amp;asset_code=a811d986d4a60535bbee2af87d3b9772&amp;current_string=MqUq6TASQju57VcH&amp;from_bubi_address=bubiV8hyQKo56DSqJmXVQXHXmtbTNQWRnAy4ZwSZ&amp;to_bubi_address=bubiV8hxkfB53Q4aSJmDLyKguiP6mG5NrPQhTxF7&amp;trade_no=2015121822911&amp;sign=<span style="color:#d80616;">b311e7bff72a4314828ccd514471cb03</span></p>
+						</li>
+					</ul>
+				</div>
+			</section>
+		</div>
+		<div data-marker="operationSample" class="con">
+			<h1>操作示例</h1>
+			<section id="operationSample_1" class="">
+				<div>
+					<table class="table table-bordered">
+						<tbody><tr><th width="200">字段</th><th>说明</th></tr>
+						<tr><td colspan="2">TX类型为 <span style="color:#C55911">创建账号</span> 的操作对象</td></tr>
+						<tr><td>└ dest_address</td><td>创建的账户地址</td></tr>
+						<tr><td>└ metadata</td><td>操作扩展字段</td></tr>
+						<tr><td>└ type</td><td>操作类型:0 创建账号</td></tr>
+						<tr><td colspan="2">TX类型为 <span style="color:#C55911">资产转移</span> 的操作对象</td></tr>
+						<tr><td>└ asset_amount</td><td>资产转移的数量</td></tr>
+						<tr><td>└ asset_code</td><td>转移的资产编码</td></tr>
+						<tr><td>└ asset_issuer</td><td>转移的发行人地址</td></tr>
+						<tr><td>└ asset_type</td><td>资产类型：1 普通资产</td></tr>
+						<tr><td>└ dest_address</td><td>资产转移的目标地址</td></tr>
+						<tr><td>└ details</td><td>资产明细<span style="color:#999999;">（资产没有有效期的概念时，请忽略。系统默认生成）</span></td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;└ amount</td><td>资产数量<span style="color:#999999;">（针对有效期）</span></td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;└ ext</td><td>资产描述<span style="color:#999999;">（针对有效期）</span></td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;└ length</td><td>资产设置有效期的时间范畴，单位：秒<span style="color:#999999;">（针对有效期）</span></td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;└ start</td><td>资产设置有效期的开始时间，Linux时间戳<span style="color:#999999;">（针对有效期）</span></td></tr>
+						<tr><td>└ metadata</td><td>操作扩展字段</td></tr>
+						<tr><td>└ source_address</td><td>资产转出方的地址</td></tr>
+						<tr><td>└ type</td><td>操作类型:1 资产转移</td></tr>
+						<tr><td colspan="2">TX类型为 <span style="color:#C55911">资产发行</span> 的操作对象</td></tr>
+						<tr><td>└ asset_amount</td><td>资产发行的数量</td></tr>
+						<tr><td>└ asset_code</td><td>发行的资产编码</td></tr>
+						<tr><td>└ asset_issuer</td><td>发行人地址</td></tr>
+						<tr><td>└ asset_type</td><td>资产类型：1 普通资产</td></tr>
+						<tr><td>└ details</td><td>资产明细<span style="color:#999999;">（资产没有有效期的概念时，请忽略。系统默认生成）</span></td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;└ amount</td><td>资产数量<span style="color:#999999;">（针对有效期）</span></td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;└ ext</td><td>资产描述<span style="color:#999999;">（针对有效期）</span></td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;└ length</td><td>资产设置有效期的时间范畴，单位：秒<span style="color:#999999;">（针对有效期）</span></td></tr>
+						<tr><td>&nbsp;&nbsp;&nbsp;└ start</td><td>资产设置有效期的开始时间，Linux时间戳<span style="color:#999999;">（针对有效期）</span></td></tr>
+						<tr><td>└ metadata</td><td>操作扩展字段</td></tr>
+						<tr><td>└ source_address</td><td>资产发行方的地址</td></tr>
+						<tr><td>└ type</td><td>操作类型:2 资产发行</td></tr>
+					</tbody></table>
+				</div>
+			</section>
+		</div>
+		
+	</div>
+	
+	
+	
+
+
+
+<!-- 公共底部 -->
+	
+	<!-- 底部 -->
+	<div class="bm-footer-wrap">
+		<div class="bm-footer clear-fix">
+			<ul class="bm-footer-list clear-fix fl">
+				<li class="bm-footer-item link-module fl">
+					<h2>友情链接</h2>
+					<a href="http://www.bubi.cn/" target="_blank">布比区块链</a>
+					<a href="https://www.btc123.com/" target="_blank">Btc123</a>
+					<a href="http://www.qianxiangbank.com/" target="_blank">钱香金融</a>
+					<a href="https://bitshuo.com/" target="_blank">Bitshuo</a>
+					<a href="http://www.bareas.com/" target="_blank">B区</a>
+				</li>
+				<li class="bm-footer-item sdk-module fl">
+					<h2>开发者支持</h2>
+					<a href="https://www.bumeng.cn/noviciate.html">新手上路</a>
+					<a href="https://www.bumeng.cn/api.html">API文档</a>
+					<a href="https://www.bumeng.cn/sdk.html">SDK下载</a>
+					<a href="https://github.com/bubichain/blockchain">Github</a>
+				</li>
+				<li class="bm-footer-item contact-module fl">
+					<h2>联系我们</h2>
+					<p>电话：021-68587573</p>
+					<p>QQ群：53854427(已满）、591864688</p>
+					<p>邮箱：support@bumeng.cn</p>
+				</li>
+			</ul>
+			<img src="./page_api/foot-qrcode.png" class="bm-qrCode fl">
+		</div>
+	</div>
+	<p class="bm-footer-copyright">布萌（上海）科技有限公司 | 沪ICP备16030123号-1</p>
+	
+	<script src="./page_api/hm.js.下载"></script><script type="text/javascript">var bbsUrl = "https://bbs.bumeng.cn/"</script>
+	<script type="text/javascript">var serverUrl = "https://www.bumeng.cn/"</script>
+	<script type="text/javascript">var staticUrl = "http://img.bumeng.cn/static/bumeng/"</script>
+	<script rel="stylesheet" src="./page_api/jquery.min.js.下载"></script>
+	<!--[if lte IE 9]>
+		<script rel="stylesheet" src="common/js/PIE-1.0.0/PIE.js"></script>
+		<script rel="stylesheet" src="common/js/ie8-ie9.js"></script>
+	<![endif]-->
+	<script type="text/javascript" src="./page_api/jquery.uploadify.min.js.下载"></script>
+	<script type="text/javascript" src="./page_api/jquery.Jcrop.js.下载"></script>
+	<script type="text/javascript" src="./page_api/jquery.validator.js.下载"></script>
+	<script type="text/javascript" src="./page_api/b.core.js.下载"></script>
+	<script type="text/javascript" src="./page_api/verifyCode.js.下载"></script>
+	<script type="text/javascript" src="./page_api/domain.js.下载"></script>
+	<script type="text/javascript" src="./page_api/header.js.下载"></script>
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		var hm = document.createElement("script");
+		hm.src = "//hm.baidu.com/hm.js?a3279404872688423f850391cd378673";
+		var s = document.getElementsByTagName("script")[0];
+		s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+
+
+
+<script type="text/javascript" src="./page_api/apiViewModule.js.下载"></script>
+</body></html>

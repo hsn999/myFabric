@@ -1,0 +1,38 @@
+server:
+    port: 8089
+    contextPath: /fabric
+    disableUploadTimeout: false
+    session:
+        timeout: 10200
+    cloud:
+        loadbalancer:
+          retry:
+            enabled: true 
+   
+
+spring:
+    application:
+        name: provider-fabric
+    http:
+        multipart:
+            max-file-size: 100000MB
+            max-request-size: 100000MB
+            maxFileSize: 100000MB
+            maxRequestSize: 100000MB
+
+ 
+feign:
+    httpclient:
+        enabled:true
+   
+logging:                             
+  level:
+    root: INFO
+  file: my.log
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+  instance:
+    prefer-ip-address: true

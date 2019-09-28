@@ -1,0 +1,889 @@
+var B = {
+	_set : {
+		loginUrl : "", // session timeout
+		debug : true
+	},
+	debug : function(msg) {
+		if (this._set.debug) {
+			if (typeof (console) != "undefined")
+				console.log(msg);
+			else
+				alert(msg);
+		}
+	},
+	ajaxError : function(xhr, ajaxOptions, thrownError) {
+		B.debug(xhr);
+	},
+	jsonEval : function(data) {
+		try {
+			if ($.type(data) == 'string')
+				return eval('(' + data + ')');
+			else
+				return data;
+		} catch (e) {
+			return {};
+		}
+	},
+	recoverSubmitBtn : function(txtStr) {
+		$(".J-submit").val(txtStr);
+		$(".J-submit").removeClass("disabled").removeAttr("disabled");
+	},
+	showErr : function(errElement, errTxt) {
+		errElement.addClass("active").removeAttr("style").html(errTxt);
+	},
+	showSysErr : function(errTxt){
+		$(".system-error-wrap").fadeIn(2000).html(errTxt);
+		setTimeout(function(){
+			$(".system-error-wrap").fadeOut(3000);
+		},3000);
+	},
+	findErrElement : function(errInput) {
+		return errInput.attr('id');
+	},
+	validatorShowErr : function(id, msg) {
+		$('form').validator('showMsg', '#' + id, {
+			type : "error",
+			msg : '*' + msg
+		});
+	},
+	simpleAjax:function(url , callback , method){
+		$.ajax({
+			type: method || 'POST',
+			url:url,
+			dataType:"json",
+			cache: false,
+			success: callback,
+			error: B.ajaxError
+		});
+		return false;
+	},
+	validateCallback : function(form, callback) {
+		var $form = $(form);
+
+		$(".J-submit").val("提交中");
+		$(".J-submit").addClass("disabled").attr("disabled", "disabled");
+		$.ajax({
+			type : form.method || 'POST',
+			url : $form.attr("action"),
+			data : $form.serializeArray(),
+			dataType : "json",
+			cache : false,
+			success : callback,
+			error : B.ajaxError
+		});
+		return false;
+	},
+	maskLayer : function(options) {
+		var bgColor = options.bgColor || '#000000';
+		var opacity = options.opacity || 0.3;
+		var zIndex = options.zIndex || 1;
+		var status = options.status;
+		if (status == 0) {
+			$('<div id="' + options.id + '"></div>').css({
+				position : "absolute",
+				top : 0,
+				left : 0,
+				zIndex : zIndex,
+				width : $(document).width(),
+				height : $(document).height(),
+				background : bgColor,
+				opacity : opacity,
+				filter : "Alpha(Opacity = " + opacity * 100 + ")"
+			}).appendTo("body");
+		} else {
+			$("#" + options.id).remove();
+		}
+	},
+	callback : {
+		userRegister : function(response) {
+			if (response.err_code == '0') {
+				setTimeout(function(){
+					window.location = serverUrl + "user/regSuccess";
+				}, 1200);
+				$("body").append(response.data.ucsysnlogin);
+				return;
+			}
+			var errElement;
+			switch (response.err_code) {
+			case '20001':
+			case '20012':
+				errElement = B.findErrElement($("input[name='user.phone']"));
+				break;
+			case '20002':
+			case '20003':
+			case '20004':
+				errElement = B.findErrElement($("input[name='user.imgVeryCode']"));
+				break;
+			case '20005':
+			case '20006':
+			case '20007':
+				errElement = B.findErrElement($("input[name='user.SMSCode']"));
+				break;
+			case '20008':
+			case '20009':
+			case '20010':
+			case '20028':
+				errElement = B.findErrElement($("input[name='user.pwd']"));
+				break;
+			case '20020':
+			case '20021':
+			case '20032':
+				errElement = B.findErrElement($("input[name='user.email']"));
+				break;
+			case '20023':
+			case '20024':
+				errElement = B.findErrElement($("input[name='user.company']"));
+				break;
+			default:
+				B.showSysErr(response.msg);
+			}
+			$("input[name='user.token']").val(response.data);
+			if(errElement != undefined){
+				B.validatorShowErr(errElement, response.msg);
+			}
+			
+			if (response.err_code == '20003' || response.err_code == '20004') {
+				$(".img-verify").click();
+			}
+			B.recoverSubmitBtn("注册");
+		},
+		userRegFromC : function(response){
+			if (response.err_code == '0') {
+				window.location = serverUrl + "base-info.html";
+				return;
+			}
+			var errElement;
+			switch (response.err_code) {
+			case '20018':
+			case '20019':
+				errElement = B.findErrElement($("input[name='user.realName']"));
+				break;
+			case '20022':
+				errElement = B
+						.findErrElement($("input[name='user.introduce']"));
+				if (errElement.length == 0)
+					errElement = B
+							.findErrElement($("textarea[name='user.introduce']"));
+				break;
+			case '20023':
+			case '20024':
+				errElement = B.findErrElement($("input[name='user.company']"));
+				break;
+			case '20025':
+			case '20026':
+				errElement = B
+						.findErrElement($("input[name='user.companyUrl']"));
+				break;
+			case '20027':
+				errElement = B
+						.findErrElement($("input[name='user.companyAddress']"));
+				break;
+			default:
+				errElement = B.findErrElement($(".J-submit"));
+			}
+			$("input[name='user.token']").val(response.data);
+
+			B.validatorShowErr(errElement, response.msg);
+			B.recoverSubmitBtn("提交申请");
+		},
+		userLogin : function(response) {
+			if (response.err_code == '0') {
+				setTimeout(function(){
+					window.location = serverUrl + "base-info.html";
+				}, 1200);
+				$("body").append(response.data.ucsysnlogin);
+			}
+			var errElement;
+			switch (response.err_code) {
+			case '20001':
+				errElement = B.findErrElement($("input[name='userName']"));
+				break;
+			case '20008':
+				errElement = B.findErrElement($("input[name='password']"));
+				break;
+			default:
+				errElement = B.findErrElement($(".J-submit"));
+			}
+
+			B.validatorShowErr(errElement, response.msg);
+			B.recoverSubmitBtn("登 录");
+		},
+		userLogout:function(response){
+			if(response.err_code == "0"){
+				if(response.data != undefined){
+					setTimeout(function(){
+						window.location = window.location.href;
+					},1200);
+					$("body").append(response.data.ucsysnlogin);
+				}else{
+					window.location = window.location.href;
+				}
+			}
+		},
+		resetPwd:function(response){
+			if (response.err_code == '0') {
+				window.location = serverUrl + "user/login";
+				return;
+			}
+			var errElement;
+			switch (response.err_code) {
+			case '20001':
+			case '20012':
+				errElement = B.findErrElement($("input[name='user.userName']"));
+				break;
+			case '20002':
+			case '20003':
+			case '20004':
+				errElement = B
+						.findErrElement($("input[name='user.imgVeryCode']"));
+				break;
+			case '20005':
+			case '20006':
+			case '20007':
+				errElement = B.findErrElement($("input[name='user.SMSCode']"));
+				break;
+			case '20008':
+			case '20009':
+			case '20010':
+			case '20028':
+				errElement = B.findErrElement($("input[name='user.password']"));
+				break;
+			default:
+				errElement = B.findErrElement($(".J-submit"));
+			}
+
+			B.validatorShowErr(errElement, response.msg);
+			if (response.err_code == '20003' || response.err_code == '20004') {
+				$(".img-verify").click();
+			}
+			B.recoverSubmitBtn("确 定");
+		},
+		modifyLogo:function(response){
+			if(response.err_code == "0"){
+				$("body").append(response.data);
+			}
+		},
+		setUrl : function(response) {
+			if (response.err_code == '0') {
+				window.location = serverUrl + "base-info.html";
+				return;
+			}
+			alert(response.msg);
+		},
+		getKey : function(response) {
+			if (response.err_code == '0') {
+				$("#secret").html(response.data);
+				$("#secret").addClass("item-intro");
+				$(".view").hide();
+				// 关闭弹层
+				options = {
+					id : 'maskLayer',
+					status : 1
+				};
+				B.maskLayer(options);
+				$('.viewkeyt').css('display', 'none');
+				return;
+			}
+
+			$('.J-viewkeytWrap input').val("");
+			B.validatorShowErr("getKey-pwd", response.msg);
+			B.recoverSubmitBtn("确定");
+		}
+	},
+	uploadify:{
+		uploadifyQueueComplete:function(queueData){
+			var msg = "The total number of files uploaded: "+queueData.uploadsSuccessful+"<br/>"
+			+ "The total number of errors while uploading: "+queueData.uploadsErrored+"<br/>"
+			+ "The total number of bytes uploaded: "+queueData.queueBytesUploaded+"<br/>"
+			+ "The average speed of all uploaded files: "+queueData.averageSpeed;
+		
+		if (queueData.uploadsErrored) {
+				B.debug(msg);
+			}
+		},
+		uploadifySuccess:function(file, data, response){
+			/*B.hideErrHint();*/
+			var dataJson = eval("("+data+")");
+			if("0" == dataJson.err_code){
+				if(dataJson.type == 1){
+					$("#"+dataJson.objId+"-input").val(dataJson.path);
+					$("#"+dataJson.objId+"-img").attr("src",staticUrl+"static/bumeng/userPic/"+dataJson.path);
+				}
+			}else{
+				B.hideErrHint();
+				B.showErrHint(dataJson.err_code);
+				$("#"+dataJson.objId+"-input").val("");
+				$("#"+dataJson.objId+"-img").attr("src",serverUrl+"common/images/showpic.jpg");
+			}
+		},
+		uploadifyError:function(file, errorCode, errorMsg) {
+			B.debug(errorCode+" : "+errorMsg);
+		},
+		onUploadProgress:function(file, bytesUploaded, bytesTotal, totalBytesUploaded, totalBytesTotal){
+			var percentage = Math.round(totalBytesUploaded / totalBytesTotal * 100);
+			var per = ((percentage > 100) ? 100 : percentage);
+			$(".J-upload-progress").show();
+			$(".J-upload-progress").height(per+"%");
+			if(per == 100){
+				setTimeout(function(){
+					$(".J-upload-progress").hide().width("0%");
+					B.cropImg($("#j-upload-asset-img").attr("src"));
+				},500);
+			}
+		}
+	},
+	/*** 资产logo剪切-调整剪切区域内原图大小及位置 ***/
+	adjustImg:function(){
+		var $raw = $(".raw");
+		var $rawImg = $(".raw-img");
+
+		if($rawImg.width() == $rawImg.height()){//原图宽高比为1，缩放为外围框宽高
+
+			$rawImg.width($raw.width());
+			$rawImg.height($raw.height());
+
+		}else if( $rawImg.width() > $rawImg.height() ){ //宽 > 高
+
+			$rawImg.width($raw.width());
+			$(".jcrop-holder").css({
+				"position":"absolute",
+				"top":"50%",
+				"left":0,
+				"margin-top":-($rawImg.height()/2)
+			});
+
+		}else{ //宽 < 高
+
+			$rawImg.height($raw.height());
+			$(".jcrop-holder").css({
+				"position":"absolute",
+				"top":0,
+				"left":"50%",
+				"margin-left":-($rawImg.width()/2)
+			});
+
+		}
+	},
+	/*** 资产logo剪切-剪切函数 ***/
+	cropImgCallBack:function(imgurl){
+
+		var $cropArea = 150;			//初始剪切宽高为150px
+		var $raw = $(".raw");			//放置被剪切图片
+		var $rawImg = $(".raw-img");	//剪切前的图片
+		var oriImg = new Image();		//获取原始图片尺寸，计算缩放比
+		oriImg.src = $rawImg.attr("src");
+		var oriImgWidth = oriImg.width;
+		var oriImgHeight = oriImg.height;
+		var $scal = 0;
+		//计算缩放比（原始图片/被剪切图片）
+		if( $rawImg.width() == $rawImg.height() ){	//宽==高
+
+			startX =  ($raw.width() - $cropArea) / 2;
+			startY = ($raw.height() - $cropArea) / 2;
+			endX = startX + $cropArea;
+			endY = startY + $cropArea;
+			$scal = oriImgWidth / $rawImg.width();
+			$(".scal").val($scal);
+
+		}else if( $rawImg.width() > $rawImg.height() ){	//宽 > 高
+
+			$cropArea = ($cropArea > $rawImg.height()) ? 100 : $cropArea;	//被剪切图高小于150
+
+			startX =     ($raw.width() - $cropArea) / 2;
+			startY = ($rawImg.height() - $cropArea) / 2;
+			endX = startX + $cropArea;
+			endY = startY + $cropArea;
+			$scal = oriImgHeight / $rawImg.height();
+			$(".scal").val($scal);
+
+		}else{	//宽 < 高
+		
+			$cropArea = ($cropArea > $rawImg.width()) ? 100 : $cropArea;	//被剪切图宽小于150
+
+			startX = ($rawImg.width() - $cropArea) / 2;
+			startY =   ($raw.height() - $cropArea) / 2;
+			endX = startX + $cropArea;
+			endY = startY + $cropArea;
+			$scal =  oriImgWidth / $rawImg.width();
+			$(".scal").val($scal);
+		}
+		//预览图地址
+		$(".preview .preview-img").attr("src", $rawImg.attr("src"));
+
+		$('.raw-img').Jcrop({
+			aspectRatio: 1, //选框宽高比 width/height
+			onSelect: coordsAndPreview, //onSelect选框选定时的事件,包括坐标信息和预览图
+			onChange:   coordsAndPreview, //onChange选框改变时的事件,包括坐标信息和预览图
+			onRelease:  clearCoords, //onRelease取消选框时的事件,清除坐标信息
+			bgFade:     true,  //bgFade背景平滑过渡	
+			bgOpacity: .6,  //bgOpacity背景透明度
+			setSelect: [startX, startY, endX, endY], //setSelect选框初始坐标
+			boxWidth:400,  //画布(最大)宽
+			boxHeight:400, //画布(最大)高
+			boundary:0     //边界
+			}, function(){jcrop_api = this;}
+		);
+
+		function coordsAndPreview(c){
+			var $previewBox = $('.preview .preview-box');
+			var $previewImg = $('.preview .preview-box img');
+
+			//坐标信息
+			$('.coords .x').val(c.x);
+			$('.coords .y').val(c.y);
+			$('.coords .w').val(c.w);
+			$('.coords .h').val(c.h);
+
+			//预览图
+			if (parseInt(c.w) > 0){
+
+				var rx =  $previewBox.width() / c.w;
+				var ry = $previewBox.height() / c.h;
+				
+				//被剪切图片尺寸
+				boundx = $rawImg.width();
+				boundy = $rawImg.height();
+
+				$previewImg.css({
+					width: Math.round(rx * boundx) + 'px',
+					height: Math.round(ry * boundy) + 'px',
+					marginLeft: '-' + Math.round(rx * c.x) + 'px',
+					marginTop: '-' + Math.round(ry * c.y) + 'px'
+				});
+			}
+		};
+
+		function clearCoords(){
+			$('.coords .clear').val('');
+		};
+
+		$("#imgsrc").attr("value", $rawImg.attr("src"));	//原图片地址
+		$(".raw-layer").css('display', 'none');
+	},
+	/*** 资产logo剪切-剪切图片***/
+	cropImg:function(imgUrl){
+		if($("#maskLayer")[0]){
+			return false;
+		}
+		options = {id:'maskLayer', status:0, zIndex:0, bgColor:'#111', opacity:0.8};
+		B.UI.maskLayer(options);
+		$.get(serverUrl+"user/crop",function(data){
+			$("body").append(data);
+			$('.J-crop').css('display', 'block');
+			$('.J-rawImg').attr('src', imgUrl).load(function(){
+				B.cropImgCallBack();
+			});
+		});
+		$(document).on('click', '.J-LayerClose', function(){
+			$("botton").button("loading");
+			$(".J-crop").remove();
+		});
+		//把数据提交到后台剪切
+		 $(document).one('click', '.J-saveCropImg', function(event){
+		 	var options = {
+		 		x     : $('.coords .x').val(),
+		 		y     : $('.coords .y').val(),
+		 		w     : $('.coords .w').val(),
+		 		h     : $('.coords .h').val(),
+		 		imgurl: $('#j-upload-asset-input').val(),
+		 		scal  : $('.coords .scal').val(),
+		 	};
+		 	$.ajax({
+		 		type: 'POST',
+		 		url: serverUrl+'user/saveCropAssetIcon',
+		 		data: options,
+		 		dataType: "json",
+		 		cache: false,
+		 		success: function(json){
+		 			if(json.err_code == 0){
+		 				$("#j-upload-asset-img").attr("src",staticUrl+"static/bumeng/userPic/"+$('#j-upload-asset-input').val()+"?r="+Math.random());
+		 				$(".J-crop").remove();
+		 				var options = {id:'maskLayer', status:1};
+		 				B.UI.maskLayer(options);
+		 			}
+		 		},
+		 		error: B.ajaxError
+		 	});
+		 	event.preventDefault();
+		 });
+	},
+	UI:{
+		maskLayer:function(options){
+			bgColor = options.bgColor || '#000000';
+			opacity = options.opacity || 0.3;
+			zIndex = options.zIndex != undefined ? options.zIndex : 1;
+			status = options.status;
+			if(status == 0){
+				$('<div id="'+ options.id +'"></div>').css({
+					position:"absolute", top:0, left:0, zIndex:zIndex,
+		 			width:$(document).width(), height:$(document).height(),
+		 			background:bgColor, opacity:opacity, filter:"Alpha(Opacity = " + opacity*100 +")"
+				}).appendTo("body");
+			}else{
+				$("#" + options.id).remove();
+			}
+		}
+	}
+};
+
+function initUI(_box){
+	var $p = $(_box || document);
+	if ($.fn.uploadify) {
+		$(":file[uploaderOption]", $p).each(function(){
+			var $this = $(this);
+			var options = {
+				swf:serverUrl+'common/uploadify/uploadify.swf',
+				fileObjName: $this.attr("name") || "file",
+				auto: true,
+				multi: true,
+				onUploadError: B.uploadify.uploadifyError
+			};
+			
+			var uploaderOption = B.jsonEval($this.attr("uploaderOption"));
+			$.extend(options, uploaderOption);
+  			$this.uploadify(options);
+		});
+	};
+	
+};
+
+var VerifyCode = {
+	regPhone : $(".regPhone"),
+	imgVeryCode : $(".imgVerify-input"),
+	getVerifyCodeBtn : $(".sms-verify"),
+	phoneErr : $(".regPhone").parent(".form-group").find(".error"),
+	imgVeryCodeErr : $(".imgVerify-input").parent(".form-group").find(".error"),
+	msg : {
+		txtStr0 : "手机号不能为空",
+		txtStr1 : "短信验证码不能为空",
+		txtStr2 : "密码不能为空",
+		txtStr3 : "图片验证码不能为空",
+		formatErr0 : "请输入正确手机号",
+		regErr0 : "该手机号码已经存在",
+		regErr1 : "失败次数超限，被冻结5分钟",
+		regOk : "注册成功",
+		reging : "正在提交",
+		regTxt : "注册",
+		btnTxt : "获取短信验证码"
+	},
+	getVerifyCodeFunOfReg : function() {
+		VerifyCode.getVerifyCodeBtn.addClass("disabled");
+
+		$.ajax({
+			url : serverUrl + "user/getVerifyPhoneCodeOfReg?phone=" + VerifyCode.regPhone.val()
+					+ "&imgVeryCode=" + VerifyCode.imgVeryCode.val(),
+			type : 'GET',
+			cache : false,
+			success : function(response) {
+				var json = B.jsonEval(response);
+				if (json.err_code == "20002" || json.err_code == "20003"
+						|| json.err_code == "20004") {
+
+					B.validatorShowErr('imgVeryCode', json.msg);
+					$(".img-verify").click();
+					VerifyCode.getVerifyCodeBtn.removeClass("disabled").html(VerifyCode.msg.btnTxt);
+					VerifyCode.getVerifyCodeBtn.unbind("click").one("click",VerifyCode.getVerifyCodeFunOfReg);
+
+				} else if (json.err_code != "0") {
+					// 为了满足“只有倒计时才置灰”
+					VerifyCode.getVerifyCodeBtn.removeClass("disabled").html(VerifyCode.msg.btnTxt);
+					VerifyCode.getVerifyCodeBtn.unbind("click").one("click",VerifyCode.getVerifyCodeFunOfReg);
+					B.validatorShowErr('phone', json.msg);
+					
+				} else {
+					VerifyCode.sendMsgCode();
+				}
+			},
+			error : B.ajaxError
+		});
+	},
+	sendMsgCode : function() {
+		var n = 1;
+		var id = setInterval(reflushCode, 1000);
+		function reflushCode() {
+			if (n > 89) {
+				clearInterval(id);
+				VerifyCode.getVerifyCodeBtn.removeClass("disabled").removeClass("countDown").html(VerifyCode.msg.btnTxt);
+				VerifyCode.getVerifyCodeBtn.unbind("click").one("click",VerifyCode.getVerifyCodeFunOfReg);
+
+			} else {
+				VerifyCode.getVerifyCodeBtn.addClass("disabled")
+						.addClass("countDown").html((90 - n) + "秒后重试")
+						.unbind("click");
+				n++;
+			}
+		}
+	}
+};
+
+var validatorFun = {
+	rules : {
+		tel : "^0?(13|15|17|18)[0-9]{9}$",
+	},
+	callback : {
+		phoneNotExistCallback : function(response) {
+			var json = B.jsonEval(response);
+			if (json.err_code == "0") {
+				VerifyCode.getVerifyCodeBtn.unbind("click").one("click",
+						VerifyCode.getVerifyCodeFunOfReg);
+				setTimeout(function() {
+					B.validatorShowErr('controlwertyui',
+							"该手机号已注册，请登录");
+				}, 0);
+			} else {
+				flag = true;
+				if (!VerifyCode.getVerifyCodeBtn.hasClass("countDown")) {
+					VerifyCode.getVerifyCodeBtn.removeClass("disabled")
+							.unbind("click").one("click",VerifyCode.getVerifyCodeFunOfReg);
+				}
+			}
+		},
+		phoneExistCallback : function(response){
+			var json = B.jsonEval(response);
+			if (json.err_code == "0") {
+				if (!VerifyCode.getVerifyCodeBtn.hasClass("countDown")) {
+					VerifyCode.getVerifyCodeBtn.removeClass("disabled")
+							.unbind("click").one("click",
+									VerifyCode.getVerifyCodeFunOfReg);
+				}
+			} else {
+				VerifyCode.getVerifyCodeBtn.unbind("click").one("click",
+						VerifyCode.getVerifyCodeFunOfReg);
+				setTimeout(function() {
+					B.validatorShowErr('controlwertyui',
+							"该手机号不存在，请前往注册");
+				}, 0);
+			}
+		},
+		registerCheckPhoneCallback : function(response){
+			var json = B.jsonEval(response);
+			if (json.err_code != "0") {//用户不存在
+				if (!VerifyCode.getVerifyCodeBtn.hasClass("countDown")) {
+					VerifyCode.getVerifyCodeBtn.removeClass("disabled").unbind("click").one("click",VerifyCode.getVerifyCodeFunOfReg);
+				}
+			}else {
+				VerifyCode.getVerifyCodeBtn.unbind("click").one("click",VerifyCode.getVerifyCodeFunOfReg);
+				setTimeout(function() {
+					B.validatorShowErr('phone',"该手机号已注册，请登录");
+				}, 0);
+			}
+		},
+		loginCheckPhoneCallback : function(response){
+			var json = B.jsonEval(response);
+			if (json.err_code != "0") {
+				setTimeout(function(){B.validatorShowErr('login-ctl1',"该手机号未注册，请先<a href='"+ serverUrl + "user/register'>注册</a>");}, 0);
+			}
+		},
+		emailNotExitCallback : function(response){
+			var json = B.jsonEval(response);
+			if (json.err_code == "0") {
+				setTimeout(function() {
+					B.validatorShowErr('email',"该邮箱已注册");
+				}, 0);
+			}else if(json.err_code == "20021"){
+				setTimeout(function() {
+					B.validatorShowErr('email',"邮箱格式有误");
+				}, 0);
+			}else if(json.err_code == "20020"){
+				setTimeout(function() {
+					B.validatorShowErr('email',"邮箱不能为空");
+				}, 0);
+			}
+		}
+	},
+	checkPhoneFun : function(ele , callback) {
+		if (new RegExp(validatorFun.rules.tel).test(ele.value)) {
+			VerifyCode.phoneErr.removeClass("active");
+
+			// 检查该手机是否已注册
+			return $.ajax({
+				url : serverUrl + "user/checkPhone?phone="
+						+ ele.value,
+				type : 'GET',
+				async : false,
+				cache : false,
+				success : callback,
+				error : B.ajaxError
+			});
+		}
+	},
+	checkEmailFun : function(ele , callback){
+		return $.ajax({
+			url : serverUrl + "user/checkEmail?email="+ ele.value,
+			type : 'GET',
+			async : false,
+			cache : false,
+			success : callback,
+			error : B.ajaxError
+		});
+	}
+};
+
+$(function() {
+	
+	$('.J-viewkeyt').click(function() {
+		var options = {
+			id : 'maskLayer',
+			status : 0,
+			zIndex : 1,
+			bgColor : '#111',
+			opacity : 0.8
+		};
+		B.maskLayer(options);
+		$('.viewkeyt').css('display', 'block');
+	});
+	$('.J-viewkeyt-cancel').click(function() {
+		var options = {
+			id : 'maskLayer',
+			status : 1
+		};
+		B.maskLayer(options);
+		$('.viewkeyt').css('display', 'none');
+		$(".J-viewkeytWrap input[name='password']").val("");
+		$('.n-msg').hide();
+	});
+
+	$(".J-doc dt").click(function() {
+		var $this = $(this);
+		var marker = $this.children('.marker').attr('data-marker');
+
+		$(".J-doc dt").removeClass('current');
+		$this.addClass('current');
+		$(".J-doc .con").each(function() {
+			if ($(this).attr('data-marker') == marker) {
+				$(window).scrollTop($(this).offset().top - 80);
+			}
+		});
+	});
+
+	$('.service .meta')
+			.mouseover(
+					function() {
+						$('.service .meta').removeClass('active').removeClass(
+								'shadow');
+
+						$(this).addClass('active').addClass('shadow');
+						$('.service .meta').children('img')
+								.each(
+										function() {
+											var imgSrc = serverUrl + "common/"
+													+ "images/"
+													+ $(this).attr('data-src')
+													+ ".png";
+											$(this).attr('src', imgSrc);
+										});
+						var thisImgSrc = serverUrl + "common/" + "images/"
+								+ $(this).children('img').attr('data-src')
+								+ "_active.png";
+						$(this).children('img').attr('src', thisImgSrc);
+					});
+
+	$('.service .meta')
+			.mouseout(
+					function() {
+						$('.service .meta').removeClass('active').removeClass(
+								'shadow');
+
+						$('.service .meta').children('img')
+								.each(
+										function() {
+											var imgSrc = serverUrl + "common/"
+													+ "images/"
+													+ $(this).attr('data-src')
+													+ ".png";
+											$(this).attr('src', imgSrc);
+										});
+
+						var thisImgSrc = serverUrl
+								+ "common/"
+								+ "images/"
+								+ $('.service .meta2').children('img').attr(
+										'data-src') + ".png";
+						$('.service .meta2').addClass('active').children('img')
+								.attr('src', thisImgSrc);
+					});
+
+	setInterval(function() {
+		var sdf = $(window).scrollTop();
+		if (sdf >= 30) {
+			$(".doc .menu").removeClass("uptoTop").addClass("init");
+		} else {
+			$(".doc .menu").removeClass("init").addClass("uptoTop");
+		}
+	}, 1);
+
+	if($('.bm-footer').length != 0){
+		if ($(window).height() > ($('.bm-footer').offset().top + 304)) {
+			$('.bm-footer').css('margin-top',
+					$(window).height() - $('.bm-footer').offset().top - 304);
+		}
+	}
+
+	$(window).scroll(
+			function() {
+				var scrollTop = $(window).scrollTop();
+				if ($(".bm-header").hasClass('bm-fixed')) {
+					if (scrollTop >= 30) {
+						$(".bm-header").addClass("fixed");
+						$('.bm-logo').attr('src',
+								serverUrl + "common/" + 'images/logo.png');
+					} else {
+						$(".bm-header").removeClass("fixed");
+						$('.bm-logo').attr('src',
+								serverUrl + "common/" + 'images/bm_logo.png');
+					}
+				}
+			});
+
+	function waphack() {
+		var browser = {
+			versions : function() {
+				var u = navigator.userAgent, app = navigator.appVersion;
+				return {
+					trident : u.indexOf('Trident') > -1, // IE内核
+					presto : u.indexOf('Presto') > -1, // opera内核
+					webKit : u.indexOf('AppleWebKit') > -1, // 苹果、谷歌内核
+					gecko : u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1,// 火狐内核
+					mobile : !!u.match(/AppleWebKit.*Mobile.*/), // 是否为移动终端
+					ios : !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), // ios终端
+					android : u.indexOf('Android') > -1
+							|| u.indexOf('Linux') > -1, // android终端或者uc浏览器
+					iPhone : u.indexOf('iPhone') > -1, // 是否为iPhone或者QQHD浏览器
+					iPad : u.indexOf('iPad') > -1, // 是否iPad
+					webApp : u.indexOf('Safari') == -1
+				// 是否web应该程序，没有头部与底部
+				};
+			}(),
+			language : (navigator.browserLanguage || navigator.language)
+					.toLowerCase()
+		};
+		if (browser.versions.mobile || browser.versions.ios
+				|| browser.versions.android || browser.versions.iPhone
+				|| browser.versions.iPad) {
+			console.log($(window).height());
+			$('body').addClass('wap');
+			$('.wap .swiper-banner').height($(window).height());
+			$('.wap .swiper-banner .swiper-container').height(
+					$(window).height());
+		} else {
+			console.log("非手机版");
+		}
+	}
+	waphack();
+	
+	$('.J-devType input').change(function(){
+		var index = $('.J-devType input').index(this);
+		$('.reg-by-bbs .form-wrap').addClass('form-hide');
+		$('.reg-by-bbs .form-wrap').eq(index).removeClass('form-hide');
+		console.log(index);
+	});
+	
+	$('.J-becomeDerverTipLayerClose').click(function() {
+    	$('.J-becomeDerverTipLayer').hide();
+    });
+
+	
+	setTimeout(function(){
+		initUI();
+	},500);
+});

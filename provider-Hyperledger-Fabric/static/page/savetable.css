@@ -1,0 +1,209 @@
+/* 首页样式 */
+.div_title {
+    height: 18px;
+    line-height: 18px;
+    margin-bottom: 20px;
+}
+
+.div_title .title_gb {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.div_title .title_en {
+    font-size: 10px;
+}
+
+.list_lh {
+    overflow: hidden;
+    border: 1px solid #eee;
+}
+
+.list_lh_fixed {
+    height: 550px;
+}
+
+.list_hd {
+    background-color: #fff;
+    border-bottom: 1px solid #000;
+    padding: 15px 0;
+}
+
+.list_hd li span {
+    font-weight: bold;
+}
+.list_lh li {
+    /* padding: 2px 0; */
+    height: 30px;
+    line-height: 30px;
+    background-color: #fff;
+}
+
+.list_lh li span {
+    word-break: keep-all;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.list_lh li span, .list_hd li span {
+    display: -moz-inline-box;
+    display: inline-block;
+}
+
+.list_lh li span.col-1, .list_hd li span.col-1 {
+    margin-left: 5%;
+    width: 20%;
+}
+
+.list_lh li span.col-2, .list_hd li span.col-2 {
+    width: 20%;
+}
+
+.list_lh li span.col-3, .list_hd li span.col-3 {
+    width: 20%;
+}
+
+.list_lh li span.col-4, .list_hd li span.col-4 {
+    width: 20%;
+}
+
+.list_lh li span.col-max, .list_hd li span.col-max {
+    width: 15%;
+}
+
+.ipt {
+    margin-top: 3px;
+    margin-bottom: 3px;
+    text-align: left;
+    padding: 2px;
+}
+
+.ipt-user {
+    width: 150px;
+}
+
+.ipt-pass {
+    width: 100px;
+}
+
+.ipt-vcode {
+    width: 66px;
+    vertical-align: top;
+}
+
+.img-vcode {
+    width: 80px;
+    height: 27px;
+}
+
+#loginDiv {
+    position: absolute;
+    z-index: 1111;
+    top: 20px;
+    left: -113px;
+    background-color: #FFF;
+    display: none;
+    text-align: left;
+    padding: 10px 20px;
+    border: 1px solid #aaa;
+}
+
+#loginForm input[type='text'], #loginForm input[type='password'] {
+    height: 16px;
+    padding: 6px;
+    border: 1px solid #ddd;
+}
+
+#loginForm h3 {
+    margin: 10px 0;
+    text-align: center;
+    color: #7b1101;
+    font-size: 18px;
+    font-weight: bold;
+    font-family: 'Microsoft YaHei';
+}
+
+.ipt-user {
+    width: 180px;
+}
+
+.ipt-vcode {
+    width: 106px;
+}
+
+.img-vcode {
+    height: 28px;
+    width: auto;
+}
+
+.ipt {
+    margin: 6px 0;
+}
+
+.ipt-btn {
+    background: #7b1101;
+    border: 0;
+    color: #FFF;
+    height: 36px;
+    line-height: 36px;
+    width: 194px;
+    margin: 10px 0 20px 0;
+}
+
+.pager-table {
+    padding-bottom: 20px;
+    padding-right: 10px;
+    font-size: 14px;
+    color: #7a7a7a;
+}
+
+.pager-table a {
+    color: #7B1101;
+}
+
+.pager-table .active {
+    font-weight: bold;
+}
+
+.pager-table .active a {
+    color: #7B1101;
+}
+
+.pager-table .disable span {
+    color: #e8e8e8;
+}
+
+.pull-right {
+    float: right !important;
+}
+
+.list-inline {
+    padding-left: 0;
+    margin-left: -5px;
+    list-style: none;
+}
+
+ul {
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+    -webkit-padding-start: 0;
+    margin: 0;
+    border: 0;
+    padding: 0;
+}
+
+.blue-shade {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    display: none;
+    background: #10a0e9;
+    text-align: center;
+    cursor: pointer;
+    z-index: 1050;
+    vertical-align: middle;
+}

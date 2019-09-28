@@ -1,0 +1,89 @@
+﻿@charset "utf-8";
+
+*{ padding:0; margin:0; box-sizing:border-box; -moz-box-sizing:border-box; -webkit-box-sizing:border-box;}
+html{height: 100%;}
+body{ font-size:12px; min-width:900px;  font-family:'微软雅黑';}
+a{ color:#000; text-decoration:none;}
+ul,ol{ list-style:none;}
+h1,h2,h3,h4,h5,h6{ font-size:12px; font-weight:normal;}
+b,strong{ font-weight:normal;}
+i,em{ font-style:normal;}
+ 
+
+.clearfix:after{ clear:both; display:block; content:'';}
+.clearfix{ zoom:1;}
+/*清除默认样式*/
+body,div,p,h1,h2,h3,h4,h5,h6,span,ul,ol,li,dl,dd,dt,a,i,strong,b,em img,form,input{ margin:0; padding:0;}
+ul li,ol li{ list-style-type:none;}
+body{ line-height:100%; /*确保字体大小为设置值，消除不必要的空格*/
+		font-size:12px;}
+h1,h2,h3,h4,h5,h6{ line-height:100%; font-size:100%/*继承父级的字体大小*/; 
+					font-weight: normal;}
+a{text-decoration:none; }
+img,input,select{ vertical-align:top; resize:none;}
+a img{ border:none;}
+b,strong{ font-weight:normal;}
+i,em{ font-style:normal;}
+
+.clearFix:after{ clear:both; display:block; content:" "; visibility:hidden; height:0; line-height:0;}
+.clearFix{*zoom:1;}
+
+.fl{ float:left; display:inline;}
+.fr{ float:right;display:inline;}
+
+input,textarea{ padding:0; border:none 0; outline:none; background:none;}
+table{ border-collapse:collapse;text-align:center; vertical-align:middle;}
+.wrap{ width:1000px; margin:0 auto; }
+.pr{ position:relative; }
+.pa{ position:absolute; }
+.ml19{ margin-left:19px; }
+.ml20{margin-left: 20px;}
+.ml40{ margin-left:40px; }
+.ml60{ margin-left:60px; }
+.mr40{ margin-right:40px; }
+.w400{ width:400px; }
+.ml70{ margin-left:70px; }
+.ml95{margin-left: 95px;}
+.ml156{margin-left:156px;}
+.ml257{margin-left:257px;}
+.ml281{margin-left:281px;}
+.ml467{margin-left: 467px;}
+.mr60{margin-right: 60px;}
+
+.bg-gray{background: #ececec;}
+
+.pt0{padding-top: 0px;}
+
+
+/*** 信息列表 ***/
+.info-group .list-item{line-height:32px;}
+.info-group .item-name{display:inline-block; width:100px; margin-bottom:0px; font-weight:400; color:#000;}
+.info-group .item-cnt{color:#666;}
+.info-group-striped .list-item:hover{background:#f5f5f5;}
+
+
+/*** 表格 ***/
+.table{width:100%; border-spacing:0; border-collapse:collapse;}
+.table tr th, .table tr td{padding:8px; text-align:left; border-top:1px solid #ddd;}
+.table tr th{background: #666a69; color: #fff;}
+.table-bordered tr th, .table-bordered tr td{border:1px solid #ddd;}
+.table-striped tr:nth-of-type(odd){background-color:#f9f9f9;}
+.table-hover tr:hover{background:#f5f5f5;}
+
+/*** layer ***/
+.layer{width:500px; margin:0 auto; border-radius:5px;}
+.layer .layer-header{padding:20px;}
+.layer .layer-header .icon-close{float:right; display:block; width:20px; height:20px; margin:-15px 5px 0px 0px; color:#c9c9c9; font-size:32px; cursor:pointer;}
+.layer .layer-header .tit{display:block; margin:30px auto 10px; text-align:center; color:#292c33; font-size:20px;}
+.layer .layer-body{padding:15px 50px;}
+.layer .layer-footer{padding:15px 50px 50px;}
+
+/*** 页面公共样式 ***/
+.wrap-bg {background: #f8f8f8;}
+
+.content-wrap {width: 1000px; margin: 0 auto; background: #fff;}
+
+/***  遮罩层  ***/
+.mask-moudule{display: none;}
+.mask-moudule .mask-moudule-bg{position: absolute; top: 0; opacity: 0.5; background: #000;}
+.mask-moudule .mask-moudule-content{position: absolute; top: 0; background: #fff;}

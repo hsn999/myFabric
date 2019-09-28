@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh-CN"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta content="text/html;" http-equiv="Content-Type">
+	<title>数字资产平台</title>
+	<meta name="keywords" content="数字资产,区块链,区块链应用,区块链技术,区块链开发,区块链开发者平台,区块链知乎,区块链金融,区块链社区,区块链论坛,区块链服务,区块链赚钱">
+	<meta name="description" content="区块链数字资产网络基于区块链技术，针对商业积分、游戏交易、数字版权、慈善公益、互助保险、身份认证、智能合约、电子合同、黄金能源等应用场景进行应用层接口封装，帮助企业/个人开发者快速的将数字资产发行到数字资产网络。">
+	<meta name="format-detection" content="telephone=no">
+	<link href="common/images/favicon.ico" rel="icon" type="image/x-icon">
+	<link rel="stylesheet" href="./page_api/common.css">
+	<link rel="stylesheet" href="./page_api/iconfont.css">
+<!-- 	<link rel="stylesheet" href="./page_api/animate.css"> -->
+	<link rel="stylesheet" href="./page_api/main.css">
+	<link rel="stylesheet" href="./page_api/headerFooter.css">
+	<link rel="stylesheet" href="./page_api/bumeng-nav.css">
+	
+		<script src="./page/push.js"></script>
+		<script src="./page/hm.js"></script>
+		<script type="text/javascript" src="./js/jquery-3.2.1.js"></script>
+
+</head>
+<body>
+	<div style="height:60px;"></div>
+	<div class="bm-header-wrap">
+		<div class="bm-header clear-fix">
+			<a href="#" class="bm-logo-wrap fl">
+				<img src="./page_api/nav-logo.png" class="bm-logo">
+			</a>
+			
+			
+				<div class="login-group fr clear-fix">
+					<a href="user/login" class="login-item login-btn fl">登录</a>
+					<a href="user/register" class="login-item register fl">注册</a>
+				</div>
+			
+			
+			
+			
+				<div class="logined-group fr" style="display: none;">
+					<a href="#" class="user-center nav-item-list">用户中心</a>
+					<ul class="sub-menu" style="display: none; opacity: 0; top: 60px;">
+						<li class="baseInfo-NavOut">退出</li>
+					</ul>
+				</div>
+			
+			<div class="nav-separation fr"></div>
+			<ul class="nav-list fr clear-fix">
+				<li class="nav-group">
+					<a href="index.html" class="nav-item">首页</a>
+				</li>
+				<li class="nav-group ">
+					<a class="nav-item nav-item-list">场景案例</a>
+					<ul class="sub-menu" style="display: none; opacity: 0; top: 60px;">
+						<li><a href="app-jifen.html">商业积分</a></li>
+						<li><a href="app-huzhu.html">网络互助</a></li>
+					</ul>
+				</li>
+				<li class="nav-group ">
+					<a class="nav-item nav-item-list">开发文档</a>
+					<ul class="sub-menu" style="display: none; opacity: 0; top: 60px;">
+		
+						<li><a href="api.html">API文档</a></li>
+						<li><a href="sdk.html">SDK文档</a></li>
+
+					</ul>
+				</li>
+				<li class="nav-group">
+					<a href="websocket.html" class="nav-item">公示</a>
+				</li>
+				<li class="nav-group">
+						<a href="new.html" class="nav-item">新增存证</a>
+					</li>
+				<li class="nav-group">
+					<a href="display.html" class="nav-item">资产展示</a>
+				</li>
+				
+				<li class="nav-line" style="width: 0px; left: 0px;"></li>
+			</ul>
+		</div>
+	</div>
+
+
+
+
+<div class="content-wrap registerBox-bg reg-step1">
+ 			<form   name="upform1" >  
+
+				<div class="register-box">
+					<div class="registerBox-title">查询</div>
+					<div class="reg-wrap">
+						<i>*</i>
+						<label class="register-title letter3" for="xxx">创建人:</label>
+						<input id="creator" class="register-input form-control regPhone" name="creator" placeholder="请输入手机号" aria-required="true" type="text">
+					</div>
+
+					
+					<div class="sub-wrap">
+		            	<input class="btn next-step register-btn J-submit" value="提交"  onclick="getContract()" >  
+		            </div>
+				</div>
+			</form>
+			
+		</div>
+
+
+<div class="main">
+		<table class="table">
+			<caption>Contract List</caption>
+		   <thead>
+		      <tr>
+			     <th>创建人</th>
+		         <th>合同名称</th>
+		         <th>合同编号</th>
+		         <th>附件</th>
+		         <th>签约人</th>
+		         <th>其他签约人</th>
+		         <th>描述</th>
+		         <th>备注</th>
+		         <th>签约时间</th>
+		      </tr>
+		   </thead>
+		   <tbody id='user_list'>
+
+		   </tbody>
+		</table>
+</div>
+<script type="text/javascript">  
+function getContract() {  
+	creator = document.getElementById("creator").value;  
+
+	 $.ajax({
+        type: 'post',
+        url: 'run',
+        data:{ "type":"query","functionName":"getContractRecordByCreator","parameter":creator },
+        datatype: 'json',
+        success: function (res) {
+			console.log(res);
+			var r1 = JSON.parse(res.Result);
+			$('#user_list').empty();
+	    	var htm = '';
+			for(i=0;i<r1.length;i++){
+				var record = r1[i].Record;
+				//<a href="url">xx</a>
+				var url = '<u><a target="_blank" href="http://192.168.37.12:8080/ipfs/'+record.attachment+'">Attachment</a></u>'
+				htm +=  '<tr><td>'+record.creator+'</td><td>'+record.contractName+'</td><td>'+record.contractNumber+'</td><td>'+url+'</td><td>'+record.contractorA+'</td><td>'+record.contractorB+'</td><td>'+record.desc+'</td><td>'+record.remark+'</td></tr>';
+			}
+			$('#user_list').append(htm);
+			
+		}
+   });
+
+
+
+}
+
+
+
+</script>  
+
+<style>
+.main{
+    text-align: center; /*让div内部文字居中*/
+    background-color: #fff;
+    border-radius: 20px;
+    width: 1300px;
+    height: 350px;
+    margin: auto;
+
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+</style>
+
+
+</body></html>

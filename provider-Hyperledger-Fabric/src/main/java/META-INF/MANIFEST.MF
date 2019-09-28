@@ -1,0 +1,92 @@
+Manifest-Version: 1.0
+Class-Path: stax-api-1.0-2.jar spring-beans-4.3.6.RELEASE.jar stax-api
+ -1.0.1.jar spring-boot-starter-logging-1.5.1.RELEASE.jar spring-secur
+ ity-rsa-1.0.3.RELEASE.jar json-smart-2.2.1.jar spring-boot-1.5.1.RELE
+ ASE.jar spring-boot-test-autoconfigure-1.5.1.RELEASE.jar gson-2.8.0.j
+ ar grpc-okhttp-1.10.0.jar grpc-context-1.10.0.jar grpc-netty-1.10.0.j
+ ar spring-cloud-context-1.2.0.RELEASE.jar spring-boot-autoconfigure-1
+ .5.1.RELEASE.jar tomcat-embed-el-8.5.11.jar feign-hystrix-9.4.0.jar p
+ rotobuf-javanano-3.0.0-alpha-5.jar spring-web-4.3.6.RELEASE.jar sprin
+ g-boot-starter-actuator-1.5.1.RELEASE.jar aether-util-1.7.jar commons
+ -math-2.2.jar joda-time-2.9.7.jar protobuf-java-3.4.0.jar maven-core-
+ 3.0.jar logback-classic-1.1.9.jar servo-core-0.10.1.jar commons-io-2.
+ 6.jar slf4j-api-1.7.22.jar jboss-logging-3.3.0.Final.jar hibernate-c3
+ p0-5.0.11.Final.jar opencensus-api-0.11.0.jar aether-impl-1.7.jar mav
+ en-model-3.0.jar google-auth-library-credentials-0.9.0.jar netty-comm
+ on-4.1.17.Final.jar jsr305-3.0.0.jar aether-api-1.0.2.v20150114.jar c
+ ommons-net-3.6.jar HikariCP-java6-2.3.13.jar ribbon-loadbalancer-2.2.
+ 2.jar ribbon-transport-2.2.2.jar json-path-2.2.0.jar mockito-core-1.1
+ 0.19.jar protobuf-java-util-3.5.1.jar netty-transport-4.1.17.Final.ja
+ r maven-aether-provider-3.2.1.jar commons-fileupload-1.3.3.jar grpc-a
+ ll-1.10.0.jar rxnetty-contexts-0.4.9.jar json-lib-ext-spring-1.0.2.ja
+ r jettison-1.3.7.jar rxnetty-servo-0.4.9.jar jsr311-api-1.1.1.jar eur
+ eka-core-1.6.2.jar xpp3_min-1.1.4c.jar io.ipfs.multihash-1.0.0.jar an
+ tlr-runtime-3.4.jar spring-cloud-commons-1.2.0.RELEASE.jar spring-mes
+ saging-4.3.6.RELEASE.jar commons-lang-2.5.jar javax.json-api-1.1.2.ja
+ r hamcrest-library-1.3.jar snakeyaml-1.17.jar plexus-interpolation-1.
+ 14.jar eureka-client-1.6.2.jar stringtemplate-3.2.1.jar jackson-datab
+ ind-2.8.6.jar jackson-annotations-2.8.0.jar c3p0-0.9.5.2.jar rxnetty-
+ 0.4.9.jar jul-to-slf4j-1.7.22.jar httpclient-4.5.2.jar ezmorph-1.0.6.
+ jar netty-tcnative-boringssl-static-2.0.8.Final.jar io.ipfs.multibase
+ -1.0.0.jar commons-collections-3.2.2.jar jersey-apache-client4-1.19.1
+ .jar accessors-smart-1.1.jar plexus-cipher-1.4.jar commons-codec-1.10
+ .jar plexus-build-api-0.0.7.jar spring-boot-test-1.5.1.RELEASE.jar io
+ .ipfs.api-1.0.0.jar ribbon-eureka-2.2.2.jar netty-codec-socks-4.1.17.
+ Final.jar proto-google-common-protos-1.0.0.jar protobuf-maven-plugin-
+ 0.5.0.jar json-lib-2.4-jdk15.jar tomcat-embed-websocket-8.5.11.jar sc
+ rypt-1.4.0.jar netty-codec-4.1.17.Final.jar io.ipfs.cid-1.0.0.jar grp
+ c-auth-1.10.0.jar rxjava-1.1.10.jar maven-artifact-3.0.jar maven-mode
+ l-builder-3.0.jar aether-api-1.7.jar animal-sniffer-annotation-1.0.ja
+ r stax2-api-3.1.4.jar jersey-client-1.19.1.jar netty-codec-http-4.1.1
+ 7.Final.jar maven-plugin-api-3.0.jar guice-4.1.0.jar spring-security-
+ crypto-4.2.1.RELEASE.jar HdrHistogram-2.1.9.jar aether-spi-0.9.0.M2.j
+ ar hibernate-validator-5.3.4.Final.jar logback-core-1.1.9.jar commons
+ -logging-1.2.jar commons-compress-1.14.jar maven-settings-builder-3.2
+ .1.jar javax.inject-1.jar aether-util-0.9.0.M2.jar jsonassert-1.4.0.j
+ ar commons-jxpath-1.3.jar plexus-sec-dispatcher-1.3.jar woodstox-core
+ -asl-4.4.1.jar spring-cloud-starter-archaius-1.3.0.RELEASE.jar feign-
+ core-9.4.0.jar json-20140107.jar sisu-inject-plexus-1.4.2.jar xmlpull
+ -1.1.3.1.jar grpc-core-1.10.0.jar error_prone_annotations-2.1.2.jar s
+ pring-context-support-4.3.6.RELEASE.jar fastjson-1.1.34.jar okio-1.13
+ .0.jar netflix-statistics-0.1.1.jar commons-configuration-1.8.jar log
+ 4j-1.2.17.jar jersey-core-1.19.1.jar grpc-protobuf-lite-1.10.0.jar gr
+ pc-stub-1.10.0.jar spring-aop-4.3.6.RELEASE.jar jackson-core-2.8.6.ja
+ r spring-boot-actuator-1.5.1.RELEASE.jar hibernate-commons-annotation
+ s-5.0.1.Final.jar commons-beanutils-1.9.3.jar xstream-1.4.9.jar wagon
+ -provider-api-1.0-beta-6.jar feign-slf4j-9.4.0.jar spring-cloud-start
+ er-eureka-1.3.0.RELEASE.jar maven-plugin-annotations-3.4.jar guava-18
+ .0.jar sisu-inject-bean-1.4.2.jar log4j-over-slf4j-1.7.22.jar spring-
+ cloud-netflix-core-1.3.0.RELEASE.jar hamcrest-core-1.3.jar bcprov-jdk
+ 15on-1.57.jar netty-transport-native-epoll-4.0.27.Final.jar junit-4.1
+ 2.jar maven-repository-metadata-3.0.jar ribbon-core-2.2.2.jar netty-r
+ esolver-4.1.17.Final.jar netty-handler-proxy-4.1.17.Final.jar plexus-
+ component-annotations-1.6.jar okhttp-2.5.0.jar commons-cli-1.4.jar ge
+ ronimo-jta_1.1_spec-1.1.1.jar grpc-testing-1.10.0.jar ribbon-httpclie
+ nt-2.2.2.jar asm-5.0.3.jar validation-api-1.1.0.Final.jar spring-webs
+ ocket-4.3.6.RELEASE.jar archaius-core-0.7.4.jar spring-boot-starter-1
+ .5.1.RELEASE.jar hibernate-jpa-2.1-api-1.0.0.Final.jar jcl-over-slf4j
+ -1.7.22.jar plexus-utils-3.0.22.jar ribbon-2.2.2.jar spring-expressio
+ n-4.3.6.RELEASE.jar servo-internal-0.10.1.jar netflix-infix-0.3.0.jar
+  spring-boot-starter-websocket-1.5.1.RELEASE.jar bcpkix-jdk15on-1.57.
+ jar aopalliance-1.0.jar spring-boot-starter-tomcat-1.5.1.RELEASE.jar 
+ spring-tx-4.3.6.RELEASE.jar opencensus-contrib-grpc-metrics-0.11.0.ja
+ r javax.json-1.1.2.jar maven-settings-3.0.jar aether-spi-1.7.jar grpc
+ -protobuf-1.10.0.jar classmate-1.3.3.jar spring-webmvc-4.3.6.RELEASE.
+ jar antlr-2.7.7.jar dom4j-1.6.1.jar tomcat-embed-core-8.5.11.jar spri
+ ng-boot-starter-web-1.5.1.RELEASE.jar hystrix-core-1.5.10.jar aether-
+ impl-1.0.2.v20150114.jar grpc-protobuf-nano-1.10.0.jar objenesis-2.1.
+ jar spring-test-4.3.6.RELEASE.jar spring-core-4.3.6.RELEASE.jar sprin
+ g-cloud-netflix-eureka-client-1.3.0.RELEASE.jar mchange-commons-java-
+ 0.2.11.jar android-json-0.0.20131108.vaadin1.jar sisu-guice-2.1.7-noa
+ op.jar javassist-3.21.0-GA.jar netty-buffer-4.1.17.Final.jar netty-ha
+ ndler-4.1.17.Final.jar maven-compat-3.0.jar netty-codec-http2-4.1.17.
+ Final.jar spring-context-4.3.6.RELEASE.jar plexus-classworlds-2.2.3.j
+ ar spring-cloud-starter-ribbon-1.3.0.RELEASE.jar netflix-commons-util
+ -0.1.1.jar io.ipfs.multiaddr-1.0.0.jar netflix-eventbus-0.3.0.jar net
+ ty-tcnative-2.0.8.Final.jar spring-cloud-starter-1.2.0.RELEASE.jar fa
+ bric-sdk-java-1.1.0.jar quartz-2.3.0.jar httpcore-4.4.6.jar jandex-2.
+ 0.0.Final.jar spring-cloud-starter-feign-1.3.0.RELEASE.jar hibernate-
+ core-5.0.11.Final.jar spring-boot-starter-test-1.5.1.RELEASE.jar asse
+ rtj-core-2.6.0.jar
+Main-Class: com.zhifu.ProviderFabricApplication
+
